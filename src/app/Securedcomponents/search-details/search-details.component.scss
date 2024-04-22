@@ -1,0 +1,44 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .property {
+   
+    padding: 5px;
+   
+  }
+
+  
+  .img-container {
+    text-align: center;
+}
+
+.img-container img {
+    display: inline-block;
+    border-radius: 50%; /* Assuming the image is a circle */
+}
+
+.info{
+  background: #4c82af;
+}
+.color-pay{
+color: blueviolet;
+}
+.color-download{
+color:goldenrod;
+}
+

@@ -1,0 +1,147 @@
+<div class="page-wrapper innerpages mar-t30">
+
+    <div class="container">
+        <section class="main-section login-section">
+            <section>
+                <div>
+
+
+                    <div>
+                        <form [formGroup]="grievanceForm" (ngSubmit)="onSubmit()" class="bg-light p-4 rounded">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-9 col-sm-9">
+                                    <div class="page-heading">
+                                        <h1 class="alternate">Lodge New Complaint</h1>
+                                    </div>
+                                </div>
+                                <div class="hidden-xs hidden-sm col-lg-3 col-sm-3">
+                                    <div class="other-options">
+                                        <a  [routerLink]="['/OnlineServices']"><span class="fa fa-angle-left pad-r5"></span>Back to Online Services</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <p>
+                                Complaints shall be automatically assigned to the relevant department or authority based
+                                on the specified Complaint Category, Complaint Code.</p>
+                            <div class="row mb-4">
+                                <div class="col text-center">
+                                    <h4>{{ department }} <span *ngIf="department == 'BBMP'"></span></h4>
+                                </div>
+                            </div>
+
+                            <div class="group-heading hline secondary-color">Complaint details</div>
+
+                            <br>
+                            <div class="mb-3">
+                                <small class="form-text text-muted mt-0 mb-2"><span class="error">*</span> marked fields
+                                    are mandatory
+                                    fields</small>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-6">
+                                    <label for="category_name" class="form-label">Select Category</label>
+                                    <select class="form-control" id="Category" formControlName="category_name" (change)="onSelectionChange($event)">
+                                        <option disabled selected value="">Select Category</option>
+                                        <option *ngFor="let item of data" [value]="[item.CatId, item.CategoryName]">{{ item.CategoryName }}</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3 col-md-6">
+                                    <label for="SubCategory" class="form-label">Select Sub Category</label>
+                                    <select class="form-control" id="SubCategory" formControlName="SubCategory" (change)="onSelectionChange2($event)">
+                                        <option disabled selected value="">Select Sub Category</option>
+                                        <option *ngFor="let item of data1" [value]="[item.SubCategoryId, item.SubCategoryName]">{{ item.SubCategoryName }}</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Description (multi-line text box) -->
+                                <div class="mb-3 col-md-6  ">
+                                    <label for="Description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="Description" formControlName="Description"
+                                        rows="5" placeholder="Description"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary" (click)="onCapturePhoto()"
+                                    style="display:none">
+                                    <i class="bi bi-camera"></i> Capture Image
+                                </button>
+
+                                <div class="col-md-6">
+                                    <label for="Description" class="form-label">Take Photo/Upload Image</label>
+                                    <input #fileInput type="file" class="form-control" formControlName="img" (change)="onFileSelected($event)"
+                                        accept="image/*">
+                                </div>
+                            </div>
+                            <div class="group-heading hline primary-color"><b>Select Location</b></div>
+                            <div class="row">
+                                
+                                <div class="mb-3 col-md-12 ">
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <div id="map" style="height: 400px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="latitude" class="form-label">Latitude</label>
+                                    <p type="text" class="form-control">{{latitude}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="longitude" class="form-label">Longitude</label>
+                                    <p class="form-control" id="longitude">{{longitude}}</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="longitude" class="form-label">Complaint Address</label>
+                                <p class="form-control">{{address}}</p>
+                            </div>
+                            <div class="main-section-padding">
+                                <div class="group-heading hline primary-color">Complainer's Personal Details</div>
+                                <div class="row">
+                                    <!-- Name -->
+
+                                    <div class="col-md-4 mb-3">
+                                        <label for="ComplainerName" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="ComplainerName"
+                                            formControlName="ComplainerName" readonly="true" placeholder="Name">
+                                    </div>
+
+
+                                    <!-- Address -->
+                                    <div class="col-md-4 mb-3">
+                                        <label for="Address" class="form-label">Address</label>
+                                        <textarea type="text" class="form-control" id="Address"
+                                            formControlName="Address" placeholder="Address"></textarea>
+                                    </div>
+
+                                    <!-- Phone number -->
+                                    <div class="mb-3 col-md-4">
+                                        <label for="MobileNo" class="form-label">Phone number</label>
+                                        <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo"
+                                            placeholder="Phone number" readonly="true">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <!-- <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        I Read and Accept <a href="">Terms and Conditions</a>
+                      </label> -->
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                                <br>
+                                <br>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

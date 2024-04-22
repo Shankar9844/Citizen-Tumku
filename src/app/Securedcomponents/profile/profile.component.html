@@ -1,0 +1,178 @@
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+    
+      <div class="container">
+        <section class="main-section">
+          <section class="inner-section">
+            <div class="page-heading">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="page-heading">
+                    <h1 *ngIf="!editProfile"  class="alternate">{{ 'Profile' | translate }}</h1>
+                    <h1 *ngIf="editProfile"  class="alternate">{{ 'editProfile' | translate }}</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block">
+              <div class="text-center">
+                <div class="user-profile-wrapper">
+                  <div class="clearfix">
+                    <div class="pull-left">
+                      <img src="assets/icons/default-profile-img.jpg"
+                        alt="Gender Profile Image" class="img-circle mar-r30 mar-b10 img-thumbnail">
+                    </div>
+                    <div class="pull-left">
+                      <div class="text-3x text-bold mar-b10">{{Name}}</div>
+                      <!-- <div class="mar-b5"><span class="text-bold">{{Email}}</span>
+                        (Registered Email)</div> -->
+                      <div class="mar-b20"><span class="text-bold">{{MobileNo}}</span> ( {{ 'Registeredmobile' | translate }})</div>
+                        <div class="profile-completion-wrapper">
+                          <div class="profile-completion">
+                            <div class="completed" [style.width.%]="completionPercentage" style="background: rgb(255, 87, 34);"></div>
+                          </div>
+                          <div class="mar-t5">{{ 'ProfileCompletion' | translate }} <span id="lblpercentage">{{ completionPercentage.toFixed(0) }}%</span></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+               <a (click)="editprofileedit()" title="Edit Profile" class="text-bold primary-color">{{ 'editProfile' | translate }}</a>
+                    <!-- | <a href="#" title="Redirect to Change Password Page"
+                  class="text-bold primary-color">Change Password</a> -->
+              </div>
+              <hr>
+              <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+              <div *ngIf="editProfile">
+              <div id="user-details">
+                <h2 class="mar-b30">Personal Details</h2>
+                <div class="row clearfix mar-b30">
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label for="FirstName">{{ 'FirstName' | translate }} <span class="text-danger">*</span></label>
+                      <input autocomplete="off" class="form-control" formControlName="FirstName">
+                    
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label for="MiddleName">{{ 'MiddleName' | translate }}</label>
+                      <input autocomplete="off" class="form-control" formControlName="MiddleName">
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label for="LastName">{{ 'LastName' | translate }} <span class="text-danger">*</span></label>
+                      <input autocomplete="off" class="form-control" formControlName="LastName">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix mar-b30">
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <label for="LastName">{{ 'Gender' | translate }}<span class="text-danger">*</span></label>
+                      <input autocomplete="off" class="form-control" formControlName="Gender">
+                      
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label for="DateOfBirth">{{ 'DateOfBirth' | translate }} <span class="text-danger">*</span></label>
+                      <input autocomplete="off" class="form-control datepicker" formControlName="DateOfBirth"
+                        placeholder="dd-MM-yyyy" type="date">
+                    
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <label for="AadharID">{{ 'AadhaarID' | translate }}</label>
+                      <input autocomplete="off" class="form-control" formControlName="AdharNo" type="number">
+                    
+                    </div>
+                  </div>
+                </div>
+                <!-- ... other personal details controls ... -->
+              </div>
+              <br>
+              <br>
+              <h2 class="mar-b30">{{ 'PermanentAddressDetails' | translate }}</h2>
+             
+              <div class="row clearfix mar-b30">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pFlatHouseNo">{{ 'FlatHouseNo' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentFlatHouseNo" maxlength="50" name="permanent_Flat_HouseNo" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pSocietyApartment">{{ 'SocietyApartmentName' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentSocietyApartment" maxlength="50" name="permanent_Society_Apartment" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pAddress">{{ 'Address' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentAddress" maxlength="50" name="permanent_Address" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row clearfix mar-b30">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pArea">{{ 'Area' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentArea" maxlength="50" name="permanent_Area" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pLandmark">{{ 'Landmark' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentLandmark" maxlength="50" name="permanent_Landmark" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pPincode">{{ 'Pincode' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentPincode" maxlength="6" name="permanent_Pincode" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row clearfix mar-b30">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pCity">{{ 'City' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentCity" maxlength="50" name="permanent_City" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pState">{{ 'State' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentState" maxlength="50" name="permanent_State" type="text">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label for="pCountry">{{ 'Country' | translate }}</label>
+                    <input class="form-control" formControlName="CurrentCountry" maxlength="50" name="permanent_Country" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="action-contents transactions">
+                <ul class="list-unstyled action-btns">
+                  <li>
+                    <button type="submit" class="button-control">
+                      <span class="fa fa-check-circle pad-r5"></span>Update profile details
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </form>
+          </div>
+          
+          </section>
+        </section>
+      </div>
+      
+    
+  </div>
+  

@@ -1,0 +1,143 @@
+
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+
+    <div class="container">
+        <section class="main-section">
+            <section class="inner-section">
+                <div class="form">
+                    <div class="page-heading">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8">
+                                <div class="page-heading">
+                                    <h1 [translate]="'Dashboard'" class="alternate"></h1>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-md-3">
+                            
+                            <div class="row">
+
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <div class="card-common-for-app">
+                                            <div class="text-right card-link">
+                                                <!-- <a href="" previewlistener="true"><span class="fa fa-plus pad-r5"></span>Lodge New Complaint</a> -->
+                                            </div>
+                                            <div class="card common">
+                                                <a class="complaint completed-complaints recent" [routerLink]="['/GrievanceHistory']" style="display: flex;justify-content: center;"><img style="height:20px" src="assets/icons/finger.gif">View Complaints </a>
+                                                <div>
+                                                    
+                                                    <a class="complaint completed-complaints recent" title="Inprocess Applications"
+                                                        previewlistener="true">
+                                                        <div class="complaint-count">
+                                                            {{ rcomplaints || 0 }} 
+                                                        </div>
+                                                        <div class="complaint-caption">
+                                                           Registered<span class="inner-complaint-caption">
+                                                                <!-- (Reopen Possible) -->
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                    <a class="complaint colorblue completed-complaints" title=" Verified Applications" previewlistener="true">
+                                                        <div class="complaint-count">
+                                                            {{ Icomplents || 0 }}
+                                                        </div>
+                                                        <div class="complaint-caption">
+                                                           Inprogress
+                                                        </div>
+                                                    </a>
+                                                    <a class="complaint completed-complaints" title="Approved Applications" previewlistener="true">
+                                                        <div class="complaint-count">
+                                                            {{ recomplaints || 0 }} 
+                                                        </div>
+                                                        <div class="complaint-caption">
+                                                           Resolved
+                                                            (Reopen Possible)
+                                                        </div>
+                                                    </a>
+                                                    <a class="complaint pending-complaints" title="Rejected Applications" previewlistener="true">
+                                                        <div class="complaint-count">
+                                                            {{ clcomplents || 0 }} 
+                                                        </div>
+                                                        <div class="complaint-caption">
+                                                          Closed
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <!-- <div class="card-name">Complaint</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-center mar-b30">
+                                        <!-- <div class="table-responsive mar-t30" *ngIf="responseData && responseData.length > 0">
+                                          <table class="table table-bordered">
+                                            <thead>
+                                              <tr>
+                                                <th translate="inwardRefNum"></th>
+                                                <th translate="applicationDate"></th>
+                                                <th translate="serviceName"></th>
+                                                <th translate="subServiceName"></th>
+                                                <th translate="status"></th>
+                                                <th translate="view"></th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor="let request of responseDataArray">
+                                                <td>{{ request.InwardRefNum }}</td>
+                                                <td>{{ request.ApplicationDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                                                <td>{{ request.ServiceName }}</td>
+                                                <td>{{ request.SubServiceName }}</td>
+                                                <td>{{ request.Status }}</td>
+                                                <td>
+                                                  <button class="button-control inverse" (click)="viewApplication(request)">View</button>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          <div class="pagination-container">
+                                            <button *ngIf="currentPage > 1" (click)="pageChanged(currentPage - 1)">Previous</button>
+                                            <span *ngFor="let pageNumber of getPageNumbers()" [class.active]="pageNumber === currentPage" (click)="pageChanged(pageNumber)">{{ pageNumber }}</span>
+
+                                            <button *ngIf="currentPage < getPageNumbers().length" (click)="pageChanged(currentPage + 1)">Next</button>
+                                          </div>
+                                      
+                                        </div> -->
+                                      </div>
+                                      
+                                      
+                                      
+
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-md-9">
+                            <div class="card-common-for-app">
+                                <div class="text-right card-link">
+                                    <a [routerLink]="['/grievance']"><span class="fa fa-plus pad-r5"></span>Lodge New Complaint</a>
+                                </div>
+                                <div class="col-sm-12 text-center mar-b30" >
+                                    <img src="assets/no-result.gif" style="height: 223px;"
+                                        class="img-responsive display-inline-block" alt="No Data">
+                                    <div class="text-2x mar-b30">
+                                        <h4 class="mar-none">No service has been enrolled yet.</h4>
+                                    </div>
+                                    <div><a class="secondary-color text-bold" [routerLink]="['/OnlineServices']" previewlistener="true">Click here</a>
+                                        to enroll Online Services.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+    <div>
+
+    </div>
+
+</div>

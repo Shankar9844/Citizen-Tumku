@@ -1,0 +1,360 @@
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+
+    <div class="container">
+        <section class="main-section with-min-height">
+            <section class="inner-section">
+                <div id="dvUSignup">
+                    <div class="page-heading">
+                        <div class="row">
+                            <div class="col-sm-12 ">
+                                <div class="page-heading">
+                                    <h1 class="alternate" translate="sasdeclaration"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <form [formGroup]="propertysearch" (ngSubmit)="searchPid()">
+                            <div class="form-group col-lg-4">
+                                <label>{{ 'PID' | translate }}</label>
+                                <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
+                                    title="PID" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'SelectTaxtobefixedYear' | translate}}</label>
+
+                                <select class="form-control" id="drpFinYear" formControlName="Assyear" name="FinYear" (change)="onAssyearSelect($event)">
+                                    <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <br>
+                                <button class="button-control" id="btnSearch" type="submit"
+                                    [disabled]="propertysearch.invalid">
+                                    <span class="fa fa-search pad-r5"></span>{{ 'search' | translate }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <form [formGroup]="sasdeclaration" (ngSubmit)="onSubmit()" *ngIf="sasForm">
+                        <div class="group-heading hline primary-color">{{ 'OwnerDetailss' | translate }}</div>
+                        <div class="row clearfix">
+                            <div class="form-group col-lg-4">
+                                <label>{{'ward' | translate}}</label>
+                                <select class="form-control" id="ward" formControlName="ward" name="ward" >
+                                    <option *ngFor="let ward of wardlst" [value]="ward.Ward_Id">{{ ward.Ward_Name }}</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group col-lg-4">
+                                <label>{{'FirstName' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="ownername"
+                                    formControlName="ownername" title="ownername" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'MiddleName' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="MiddleName" 
+                                    formControlName="MiddleName" title="MiddleName" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'LastName' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="LastName" 
+                                    formControlName="LastName" title="LastName" type="text" value="">
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label>{{'coraddress' | translate}}</label>
+                                <textarea autocomplete="off" class="form-control" name="Address1" 
+                                    formControlName="coraddress" title="Address1" type="text" value=""></textarea>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'Propertyaddrress' | translate}}</label>
+                                <textarea autocomplete="off" class="form-control" name="Propertyaddrress"
+                                    formControlName="Propertyaddrress" title="Propertyaddrress" type="text"
+                                    value=""></textarea>
+                            </div>
+                           
+                            </div>
+                           
+                        <div class="row clearfix">
+                            <div class="form-group col-lg-4">
+                                <label>{{'Noofowners' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="Noofowners"
+                                    formControlName="Noofowners" title="Noofowners" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{ 'CITY' | translate }}</label>
+                                <input autocomplete="off" class="form-control" name="City"
+                                    formControlName="City" title="City" type="text" value="">
+                            </div>
+                          
+                            <div class="form-group col-lg-4">
+                                <label>{{ 'StreetName' | translate }}</label>
+                                <input autocomplete="off" class="form-control" name="StreetName"
+                                    formControlName="StreetName" title="StreetName" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'SelectTaxtobefixedYear' | translate}}</label>
+
+                                <select class="form-control" id="drpFinYear" formControlName="Assyear" name="FinYear" (change)="onAssyearSelect($event)">
+                                    <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="group-heading hline primary-color">{{ 'PROPERTY_DETAILS' | translate }}</div>
+                        <br>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'Property_Number' | translate }}</label>
+                                    <input autocomplete="off" class="form-control" name="Property_Number"
+                                        formControlName="Property_Number" title="Property_Number" type="text" value="">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'Property_Class' | translate }}</label>
+                                    <select class="form-control" id="drpPropertyClass" formControlName="Property_Class" name="PropertyClass">
+                                        <option *ngFor="let propertyClass of Propertyclasslst" [value]="propertyClass.classname">{{ propertyClass.classname }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'Land_Authorization' | translate }}</label>
+                                    <select class="form-control" id="drpLandAuthorization" formControlName="Land_Authorization" name="LandAuthorization">
+                                        <option *ngFor="let authorization of LandAuthorizationlst" [value]="authorization.Auth_Id">{{ authorization.Auth_Name }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'PropertyStatus' | translate }}</label>
+                                    <select class="form-control" id="drpPropertyStatus" formControlName="PropertyStatus" name="Property Status">
+                                        <option value="selected">Constructed</option>
+                                        <option value="1">Open Land</option>
+                                      
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'PropertyUsage' | translate }}</label>
+                                    <select class="form-control" id="drpPropertyUsage" formControlName="PropertyUsage" name="PropertyUsage">
+                                        <option *ngFor="let usage of PropertyUsageList" [value]="usage.usagename">{{ usage.usagename }}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>{{ 'PropertyType' | translate }}</label>
+                                    <select class="form-control" id="drpPropertyType" formControlName="PropertyType" name="PropertyType">
+                                        <option value="ASSESSED">ASSESSED</option>
+                                        <option value="UNASSESSED">UNASSESSED</option>
+                                    </select>
+                                </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{ 'TotalArea' | translate }}</label>
+                                <input autocomplete="off" class="form-control" name="TotalArea"
+                                    formControlName="TotalArea" title="TotalArea" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{ 'AreaOccupiedbyBuilding' | translate }}</label>
+                                <input autocomplete="off" class="form-control" name="AreaOccupiedbyBuilding"
+                                    formControlName="AreaOccupiedbyBuilding" title="AreaOccupiedbyBuilding" type="text" value="">
+                            </div>
+                          
+                                
+                            
+                            <div class="form-group col-lg-4">
+                                <label>{{'OpenLand' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="OpenLand"
+                                    formControlName="OpenLand" title="OpenLand" type="text" value="">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>{{'newassessmentno' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="newassessmentno"
+                                    formControlName="newassessmentno" title="newassessmentno" type="text" value="">
+                            </div>
+                            
+                           
+                            <!-- <div class="form-group col-lg-4">
+                                <label>{{ 'cornersite' | translate }}</label>
+
+                                <div class="form-control">
+                                    <label>
+                                        <input type="radio" formControlName="cornersite" value="yes"> Yes
+                                    </label>
+
+                                    <label>
+                                        <input type="radio" formControlName="cornersite" value="no"> No
+                                    </label>
+                                </div>
+                            </div> -->
+                            <br>
+
+                        </div>
+                        <div class="group-heading hline primary-color">{{ 'Surrounding' | translate }}</div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 text-right">
+                                <label>{{ 'East' | translate }}</label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                            <select class="form-control " id="drpPropertyType" formControlName="Eastw" name="PropertyType" (change)="onPropertyTypeChange($event)" name="PropertyType">
+                                <option value="Road">Road</option>
+                                <option value="PID">PID</option>
+                                <option value="Conservancy">Conservancy</option>
+                                <option value="Park">Park</option>
+                                <option value="Lake">Lake</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <input autocomplete="off" class="form-control" name="Eastw" formControlName="Eastw" [readonly]="isControlReadOnly('Eastw')"
+                                    title="Eastw" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 text-right">
+                                <label>{{ 'West' | translate }}</label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <select class="form-control " id="drpPropertyType" formControlName="Westw" name="PropertyType"  (change)="onPropertyTypeChange($event)" name="PropertyType">
+                                    <option value="Road">Road</option>
+                                    <option value="PID">PID</option>
+                                    <option value="Conservancy">Conservancy</option>
+                                    <option value="Park">Park</option>
+                                    <option value="Lake">Lake</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <input autocomplete="off" class="form-control" name="Westw" formControlName="Westw"  [readonly]="isControlReadOnly('Westw')"
+                                    title="Westw" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 text-right">
+                                <label>{{ 'North' | translate }}</label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <select class="form-control " id="drpPropertyType" formControlName="Northw" (change)="onPropertyTypeChange($event)" name="PropertyType">
+                                    <option value="Road">Road</option>
+                                    <option value="PID">PID</option>
+                                    <option value="Conservancy">Conservancy</option>
+                                    <option value="Park">Park</option>
+                                    <option value="Lake">Lake</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <input autocomplete="off" class="form-control" name="Northw" formControlName="Northw"  [readonly]="isControlReadOnly('Northw')"
+                                    title="Northw" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 text-right">
+                                <label>{{ 'south' | translate }}</label>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <select class="form-control" id="drpPropertyType" formControlName="PropertyType" name="PropertyType" (change)="onPropertyTypeChange($event)">
+                                    <option value="Road">Road</option>
+                                    <option value="PID">PID</option>
+                                    <option value="Conservancy">Conservancy</option>
+                                    <option value="Park">Park</option>
+                                    <option value="Lake">Lake</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <input autocomplete="off" class="form-control" name="southw" formControlName="southw" title="southw" type="text" [readonly]="isControlReadOnly('PropertyType')" value="">
+                            </div>
+                            
+                        </div>
+                        <div class="group-heading hline primary-color">{{ 'FloorDetails' | translate }}</div>
+                        <div class="row clearfix">
+                            <div class="form-group col-md-4">
+                                <label>{{'noofFloors' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="noofFloors"
+                                    formControlName="noofFloors" title="noofFloors" type="text" value="">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>{{'builtupfloorarea' | translate}}</label>
+                                <input autocomplete="off" class="form-control" name="builtupfloorarea"
+                                    formControlName="builtupfloorarea" title="builtupfloorarea" type="text" value="">
+                            </div>
+                            
+                        </div>
+                        <div *ngIf="floorDetailsget.length > 0">
+                            <h2>Floor Details</h2>
+                            <div class="table-responsive">
+                                <table id="example" class="table  table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Floor Type</th>
+                                            <th>Floor </th>
+                                            <th>Usage</th>
+                                            <th>Class</th>
+                                            <th>Tax (INR)</th>
+                                            <th>SWM Cess</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let floor of floorDetailsget">
+                                            <td>{{ floor.floorLevel}}</td>
+                                            <td>{{ floor.FloorType_Name}}</td>
+                                            <td>{{ floor.FloorUsage_Name }}</td>
+                                            <td>{{ floor.FloorClass_Id }}</td>
+                                            <td>{{ floor.FloorTax }}</td>
+                                            <td>{{ floor.SWMCess }}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div *ngIf="floorDetails.length > 0">
+                       
+                            <div class="table-responsive">
+                                <table id="example" class="table  table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Floor Type</th>
+                                            <th>Floor </th>
+                                            <th>Usage</th>
+                                            <th>Class</th>
+                                            <th>Tax (INR)</th>
+                                            <th>SWM Cess</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let floor of floorDetails">
+                                            <td>{{ floor.floorLevel}}</td>
+                                            <td>{{ floor.FloorType_Name}}</td>
+                                            <td>{{ floor.FloorUsage_Name }}</td>
+                                            <td>{{ floor.FloorClass_Id }}</td>
+                                            <td>{{ floor.FloorTax }}</td>
+                                            <td>{{ floor.SWMCess }}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary w-100" (click)="openModal()"> <span class="fa fa-plus pad-r5"></span> Add Floors</button>
+                        </div>
+                      
+
+
+
+                        <app-add-floor></app-add-floor>
+
+                        <!-- Add this code within the existing HTML structure -->
+                        
+
+
+
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

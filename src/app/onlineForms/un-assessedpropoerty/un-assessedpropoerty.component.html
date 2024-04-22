@@ -1,0 +1,883 @@
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+    <div class="container">
+        <section class="main-section with-min-height">
+            <section class="inner-section">
+                <div id="dvUSignup">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12s col-lg-12">
+                            
+                            <div class="row clearfix">
+                                <h3><strong>Un-Assessed Property Register</strong></h3>
+                                <form [formGroup]="propertysearch" (ngSubmit)="searchPid()">
+                                    <div class="form-group col-lg-4">
+                                        <label>{{ 'PID' | translate }}</label>
+                                        <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
+                                            title="PID" type="text" value="">
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label for="drpFinYear">{{'billyear' | translate}}</label>
+                                        <select class="form-control" id="drpFinYear" formControlName="Assyear"
+                                            name="FinYear">
+                                            <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <br>
+                                        <button class="button-control" id="btnSearch" type="submit"
+                                            [disabled]="propertysearch.invalid">
+                                            <span class="fa fa-search pad-r5"></span>{{ 'search' | translate }}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <form [formGroup]="Unassed" *ngIf="Unassed" (ngSubmit)="SubmitUnAssed()">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading326">
+                                            <div class="panel-title">
+                                                <a role="button" [ngClass]="{'disabled-link': !attachdata}"
+                                                    data-toggle="collapse" data-parent="#accordion" href="#collapse326"
+                                                    aria-expanded="true" aria-controls="collapse326">Un-Assessed
+                                                    Property Register</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse326" [ngClass]="{'in': attachdata}"
+                                            class="panel-collapse collapse in" role="tabpanel"
+                                            aria-labelledby="heading326" aria-expanded="true">
+                                            <div class="panel-body">
+                                                <div class="row clearfix">
+                                                    <div class="col-md-4">
+
+                                                        <div class="form-group">
+                                                            <label for="">Layout Property</label>
+                                                            <div class="form-control">
+                                                                <label for="">YES</label>
+                                                                <input type="radio" id="UnAssessedpropoerty1"
+                                                                    name="UnAssessedpropoerty"
+                                                                    formControlName="UnAssessedpropoerty" value="YES">
+                                                                <label for="">NO</label>
+                                                                <input type="radio" id="UnAssessedpropoerty2"
+                                                                    name="UnAssessedpropoerty"
+                                                                    formControlName="UnAssessedpropoerty" value="NO">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">ಅನಧಿಕೃತ ಆಸ್ತಿ</label>
+                                                            <div class="form-control">
+                                                                <label for="">YES</label>
+                                                                <input type="radio" id="IsLayout1" name="IsLayout"
+                                                                    formControlName="IsLayout" value="YES">
+                                                                <label for="">NO</label>
+                                                                <input type="radio" id="IsLayout2" name="IsLayout"
+                                                                    formControlName="IsLayout" value="NO">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button role="button" [disabled]="!checkFormValidity()"
+                                                    class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse336" aria-expanded="false"
+                                                    aria-controls="collapse336">Next</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link': !checkFormValidity()}" class="collapsed"
+                                                    role="button" data-toggle="collapse" data-parent="#accordion"
+                                                    href="#collapse336" aria-expanded="false"
+                                                    aria-controls="collapse336">
+                                                    ಮಾಲೀಕರು / ವರ್ಗಾಯಿಸಿದವರ / ಮಾರಾಟ ಮಾಡುವವರ
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse336" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row clearfix">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="name">ಹೆಸರು</label>
+                                                            <input type="text" class="form-control"
+                                                                name="Owner_Name_kan" formControlName="Owner_Name_kan">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">ಗಂಡ/ತಂದೆಯ ಹೆಸರು</label>
+                                                            <input type="text" class="form-control"
+                                                                name="Owner_HusFather_kan"
+                                                                formControlName="Owner_HusFather_kan">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">{{'FATHER_NAME_IN_ENGLISH' |
+                                                                translate}}</label>
+                                                            <input type="text" class="form-control"
+                                                                name="Owner_Name_Eng" formControlName="Owner_Name_Eng">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">{{'HUSBAND/FATHER_NAME_IN_ENGLISH' |
+                                                                translate}}</label>
+                                                            <input type="text" class="form-control"
+                                                                name="Owner_HusFather_Eng"
+                                                                formControlName="Owner_HusFather_Eng">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="name">Occupier Name (Kannada)</label>
+                                                            <input type="text" class="form-control"
+                                                                name="OccupierName_Kan"
+                                                                formControlName="OccupierName_Kan">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">ಗಂಡ/ತಂದೆಯ ಹೆಸರು</label>
+                                                            <input type="text" class="form-control"
+                                                                name="OccupierName_HusFather_Kan"
+                                                                formControlName="OccupierName_HusFather_Kan">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">Occupier First Name (English)</label>
+                                                            <input type="text" class="form-control"
+                                                                name="OccupierName_Eng"
+                                                                formControlName="OccupierName_Eng">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="number">Occupier Husband/Father Name</label>
+                                                            <input type="text" class="form-control"
+                                                                name="OccupierName_HusFather_Eng"
+                                                                formControlName="OccupierName_HusFather_Eng">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <button [disabled]="!checkFormValidity1()" role="button"
+                                                    class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse337" aria-expanded="false"
+                                                    aria-controls="collapse337">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link': !checkFormValidity()}" class="collapsed"
+                                                    role="button" data-toggle="collapse" data-parent="#accordion"
+                                                    href="#collapse337" aria-expanded="false"
+                                                    aria-controls="collapse337"> ಸ್ವತ್ತಿನ
+                                                    ಪ್ರದೇಶದ ವಿವರ</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse337" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row clearfix">
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.WARD_ID'|translate}}</label>
+                                                          <select name="Ward_Id" id="" formControlName="Ward_Id" class="form-control">
+                                                            <option *ngFor="let street of getwardsetails" [value]="street?.Ward_Name">{{street?.Ward_Name}}</option>
+                                                          </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.STAGE/PHASE/AREA'|translate}}</label>
+                                                            <input type="number" name="Block_Id" id=""
+                                                                class="form-control" formControlName="Block_Id">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.STREET_ID'|translate}}</label>
+                                                            <input type="number" name="Street_Id" id=""
+                                                                class="form-control" formControlName="Street_Id">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.ADDRESS'|translate}}</label>
+                                                            <input type="text" name="Address" id="" class="form-control"
+                                                                formControlName="Address">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.CORNER_PLOT'|translate}}</label>
+                                                            <div class="form-control">
+                                                                <label for="">YES</label>
+                                                                <input type="radio" name="Corner_Plot" id=""
+                                                                    formControlName="Corner_Plot" value="YES">
+                                                                <label for="">NO</label>
+                                                                <input type="radio" name="Corner_Plot" id=""
+                                                                    formControlName="Corner_Plot" value="NO">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.CITY'|translate}}</label>
+                                                            <input type="text" id="" name="City" formControlName="City"
+                                                                class="form-control">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <button [disabled]="!checkFormValidity2()" role="button"
+                                                    class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse338" aria-expanded="false"
+                                                    aria-controls="collapse338">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link': !checkFormValidity2()}"
+                                                    class="collapsed" role="button" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse338" aria-expanded="false"
+                                                    aria-controls="collapse338">ಸಂಪರ್ಕಕ್ಕಾಗಿ ಅರ್ಜಿದಾರರ ಅಂಚೆ ವಿಳಾಸ</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse338" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row clearfix">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.NAME'|translate}}</label>
+                                                            <input type="text" name="Contact_Name" id=""
+                                                                class="form-control" formControlName="Contact_Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.ADDRESS'|translate}}</label>
+                                                            <input type="text" name="Contact_Addr" id=""
+                                                                class="form-control" formControlName="Contact_Addr">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <span style="color: red;">*</span>
+                                                            <label
+                                                                for="">{{'UnassedForm.MOBILE_NUMBER_OF_APPLICANT'|translate
+                                                                }}</label>
+                                                            <input type="number" name="Applicant_MobileNo"
+                                                                id="TPANumber" class="form-control"
+                                                                formControlName="Applicant_MobileNo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <span style="color: red;">*</span>
+                                                            <label for="">{{'UnassedForm.EMAIL_OF_APPLICANT' |translate
+                                                                }}</label>
+                                                            <input type="email" name="Applicant_Email" id="TPAEmail"
+                                                                class="form-control" formControlName="Applicant_Email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'APPLICANTS_PORTRAIT'| translate}}</label>
+                                                            <input type="file" name="test7" id="TPAPhoto"
+                                                                class="form-control" formControlName="test7">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'APPLICANTS_PHOTOGRAPH' |
+                                                                translate}}</label>
+                                                            <input type="file" name="test8" id="TPAPhoto1"
+                                                                class="form-control" formControlName="test8">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.HOUSE_NO'|translate}}:</label>
+                                                            <input type="text" name="HouseNo" id=""
+                                                                formControlName="HouseNo" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.PROPERTY_TAX_REGISTRATION_SERIAL_NO'|translate}}</label>
+                                                            <input type="text" name="SerialNo" id=""
+                                                                class="form-control" formControlName="SerialNo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <span style="color: red;">*</span>
+                                                            <label for="">{{'UnassedForm.PROPERTY_NO'|
+                                                                translate}}</label>
+                                                            <input type="number" name="PropertyNo" id="SecondTPACHomeNo"
+                                                                class="form-control" formControlName="PropertyNo">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+                                                <button [disabled]="!checkFormValidity3()" role="button"
+                                                    class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse339" aria-expanded="false"
+                                                    aria-controls="collapse339">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link':!checkFormValidity3()}" class="collapsed"
+                                                    role="button" data-toggle="collapse" data-parent="#accordion"
+                                                    href="#collapse339" aria-expanded="false"
+                                                    aria-controls="collapse339">ಐಟಂ 3ರಲ್ಲಿನ ಆಸ್ತಿಯ ವಿವರ</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse339" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">{{'AmulgamationForm.AREA' |
+                                                                translate}}</label>
+                                                            <div class="horizontal-radio-container"
+                                                                style="border: 2px solid black;">
+                                                                <div>
+                                                                    <input type="radio" name="GovtDevelopmentAuthID"
+                                                                        id="GovtDevelopmentAuthID1"
+                                                                        formControlName="GovtDevelopmentAuthID"
+                                                                        value="ಅಭಿವೃದ್ಧಿ ಪ್ರಾಧಿಕಾರ">
+                                                                    <label for="GovtDevelopmentAuthID1">ಅಭಿವೃದ್ಧಿ
+                                                                        ಪ್ರಾಧಿಕಾರ</label>
+                                                                </div>
+
+                                                                <div>
+                                                                    <input type="radio" name="GovtDevelopmentAuthID"
+                                                                        id="GovtDevelopmentAuthID2"
+                                                                        formControlName="GovtDevelopmentAuthID"
+                                                                        value="ಕ . ಗೃ . ಮಂಡಳಿಯಿಂದ">
+                                                                    <label for="GovtDevelopmentAuthID2">ಕ . ಗೃ .
+                                                                        ಮಂಡಳಿಯಿಂದ</label>
+                                                                </div>
+
+                                                                <div>
+                                                                    <input type="radio" name="GovtDevelopmentAuthID"
+                                                                        id="GovtDevelopmentAuthID3"
+                                                                        formControlName="GovtDevelopmentAuthID"
+                                                                        value="ರೆವಿನ್ಯೂ ಬಡಾವಣ">
+                                                                    <label for="GovtDevelopmentAuthID3">ರೆವಿನ್ಯೂ
+                                                                        ಬಡಾವಣ</label>
+                                                                </div>
+
+                                                                <div>
+                                                                    <input type="radio" name="GovtDevelopmentAuthID"
+                                                                        id="GovtDevelopmentAuthID4"
+                                                                        formControlName="GovtDevelopmentAuthID"
+                                                                        value="ಗ್ರಾಮ ಠಾಣಾ">
+                                                                    <label for="GovtDevelopmentAuthID4">ಗ್ರಾಮ
+                                                                        ಠಾಣಾ</label>
+                                                                </div>
+
+                                                                <div>
+                                                                    <input type="radio" name="GovtDevelopmentAuthID"
+                                                                        id="GovtDevelopmentAuthID5"
+                                                                        formControlName="GovtDevelopmentAuthID"
+                                                                        value="ಇತರೆ">
+                                                                    <label for="GovtDevelopmentAuthID5">ಇತರೆ</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.MESURE_LENGTH_OR_WIDTH'|translate}}</label>
+                                                            <input type="number" class="form-control" id=""
+                                                                name="PhysicalProperty"
+                                                                formControlName="PhysicalProperty">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.DATE_OF_CONSTRUJCTION'|translate}}</label>
+                                                            <input type="date" class="form-control"
+                                                                name="Construction_Date"
+                                                                formControlName="Construction_Date"
+                                                                placeholder="Date_of_construction building">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="propertyUse">{{ 'UnassedForm.PROPERTY_USE' |
+                                                                translate }}</label>
+                                                                <select id="Property_Usage_Id" class="form-control" formControlName="Property_Usage_Id">
+                                                                    <option *ngFor="let items of PropertyUsagelists" [value]="items?.usagename">{{ items?.usagename
+                                                                        }}</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.ASSIGNMENT_YEAR'|translate}}</label>
+                                                            <select id="propertyUse" name="Assessment_Year"
+                                                                formControlName="Assessment_Year"
+                                                                class="form-control custom-select">
+                                                                <option selected>-- Select --</option>
+                                                                <option value="0">Option 1</option>
+                                                                <option value="1">Option 2</option>
+                                                                <option value="2">Option 3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.RR_Number'|translate}}</label>
+                                                            <input type="number" class="form-control" name="RR_No"
+                                                                formControlName="RR_No">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.NEW_PAGE_NO'|translate}}</label>
+                                                            <input type="number" name="Page_No" id=""
+                                                                class="form-control" formControlName="Page_No">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.PROPERTY_CLASS'|translate}}</label>
+                                                                <select id="Property_Class_Id" class="form-control" formControlName="Property_Class_Id">
+                                                                    <option *ngFor="let classlist of PropertyClassList" [value]="classlist?.classname">{{ classlist?.classname }}</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.OLD_ASSIGNMENT_NO'|translate}}</label>
+                                                               <input type="text" name="" id="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.NEW_ASSIGNMENT_NO'|translate}}</label>
+                                                            <input type="number" name="New_AssessmentNo" id=""
+                                                                class="form-control" formControlName="New_AssessmentNo">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th>Length</th>
+                                                                            <th></th>
+                                                                            <th>Breadth</th>
+                                                                            <th></th>
+                                                                            <th>TotalArea</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>ಎ)</td>
+                                                                            <td>{{ 'UnassedForm.TOTAL_PLOT_AREA' |
+                                                                                translate }}</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="PlotArea_Length"
+                                                                                    (input)="calculateTotalPlotArea()">
+                                                                            </td>
+                                                                            <td>x</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="PlotArea_Breadth"
+                                                                                    (input)="calculateTotalPlotArea()">
+                                                                            </td>
+                                                                            <td>=</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="TotalPlotArea"
+                                                                                    [value]="totalArea1"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>ಬಿ)</td>
+                                                                            <td>{{ 'UnassedForm.BUILDING_TOTAL_AREA' |
+                                                                                translate }}</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="BuildUp_Length"
+                                                                                    (input)="calculateTotalBuildingArea()">
+                                                                            </td>
+                                                                            <td>x</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="BuildUp_Breadth"
+                                                                                    (input)="calculateTotalBuildingArea()">
+                                                                            </td>
+                                                                            <td>=</td>
+                                                                            <td><input type="text" class="form-control"
+                                                                                    formControlName="TotalBuildUpArea"
+                                                                                    [value]="totalArea2"></td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.DESCRIPTION_OF_OLD_PROPERTY_AREA_1'|translate}}</label>
+                                                            <textarea name="Desc_OldPropertyArea1" id="" rows="3"
+                                                                class="form-control"
+                                                                formControlName="Desc_OldPropertyArea1"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.DESCRIPTION_OF_OLD_PROPERTY_AREA_2'|translate}}</label>
+                                                            <textarea name="Desc_OldPropertyArea2" id="" rows="3"
+                                                                class="form-control"
+                                                                formControlName="Desc_OldPropertyArea2"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.DESRIPTION_OF_PROPERTY_AREA_1'|translate}}:</label>
+                                                            <textarea name="Desc_PropertyArea1" id="newpropertysize1"
+                                                                rows="3" class="form-control"
+                                                                formControlName="Desc_PropertyArea1"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="">{{'UnassedForm.DESRIPTION_OF_PROPERTY_AREA_2'|translate}}</label>
+                                                            <textarea name="Desc_PropertyArea2" id="newpropertysize2"
+                                                                rows="3" class="form-control"
+                                                                formControlName="Desc_PropertyArea2"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="">{{'UnassedForm.OLD_PID'|translate}}</label>
+                                                            <input type="text" name="OldPID" id="" class="form-control"
+                                                                formControlName="OldPID">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <button [disabled]="!checkFormValidity4()" role="button"
+                                                    class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse340" aria-expanded="false"
+                                                    aria-controls="collapse340">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link':!checkFormValidity4()}" class="collapsed"
+                                                    role="button" data-toggle="collapse" data-parent="#accordion"
+                                                    href="#collapse340" aria-expanded="false"
+                                                    aria-controls="collapse340">Add Floor Details</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse340" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row clearfix">
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-success"
+                                                            data-toggle="modal" data-target="#staticBackdrop">
+                                                            Add Floor
+                                                        </button>
+                                                    </div>
+
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static"
+                                                        data-keyboard="false" tabindex="-1"
+                                                        aria-labelledby="staticBackdropLabel" aria-hidden="true"
+                                                        style="width:50%, margin-left=30%">
+                                                        <div
+                                                            class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                                        <strong>
+                                                                            <h3>Floor Details</h3>
+                                                                        </strong></h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body"
+                                                                    style="max-height: 70vh; overflow-y: auto;">
+                                                                    <div class="row">
+                                                                        <div class="container-fluid">
+                                                                            <div class="form-group">
+                                                                                <label for="">Floor Type</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Floor Usage</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Floor Level</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Floor class</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Slab Type</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Plinth Area(Assessed)(Sq.
+                                                                                    ft)</label>
+                                                                                <input type="text" name="" id=""
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Plinth
+                                                                                    Area(UnAssessed)(Sq. ft)</label>
+                                                                                <input type="text" name="" id=""
+                                                                                    class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Building Age</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="">Tax Rebate</label>
+                                                                                <select name="" id=""
+                                                                                    class="form-control">
+                                                                                    <option value="">select</option>
+                                                                                    <option value="0">1</option>
+                                                                                    <option value="0">2</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="reset" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <button role="button" class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse341" aria-expanded="false"
+                                                    aria-controls="collapse341">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading337">
+                                            <div class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse341" aria-expanded="false"
+                                                    aria-controls="collapse341">Floor Details</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse341" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading337" aria-expanded="false">
+                                            <div class="panel-body">
+
+
+
+                                                <button role="button" class="btn btn-primary" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse342" aria-expanded="false"
+                                                    aria-controls="collapse342">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading336">
+                                            <div class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse"
+                                                    data-parent="#accordion" href="#collapse342" aria-expanded="false"
+                                                    aria-controls="collapse342">
+                                                    ಲಗತ್ತಿಸಿದ ದಾಖಲೆಗಳ ಪಟ್ಟಿ (ಸಂಬಂಧಿಸಿದ ಚೌಕದಲ್ಲಿ ಗುರುತು ಮಾಡಿ)</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse342" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading336" aria-expanded="false">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4>Mandatory Attachments</h4>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Upload</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let attachment of mandatoryAttachments">
+                                                                    <td>{{ attachment.applicationformattachmentName }}
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="file"
+                                                                            (change)="onFileSelected($event, attachment)">
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                    <div class="col-md-6">
+                                                        <h4>Optional Attachments</h4>
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Upload</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let attachment of optionalAttachments">
+                                                                    <td>{{ attachment.applicationformattachmentName }}
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="file"
+                                                                            (change)="onFileSelected($event, attachment)">
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div style="text-align: right;">
+                                                    <button type="submit" role="submit" class="btn btn-primary"
+                                                        style="margin-right: 10px;">Submit</button>
+                                                    <button type="" class="btn btn-success"
+                                                        style="margin-right: 10px;">Print</button>
+                                                    <button type="reset" class="btn btn-primary">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

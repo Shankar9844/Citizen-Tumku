@@ -1,0 +1,141 @@
+<div class="page-wrapper innerpages mar-t30">
+    <div class="container">
+        <section class="main-section with-min-height">
+            <section class="inner-section">
+                <div class="page-heading">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                            <div class="page-heading">
+                                <h1 class="alternate">Complaint History</h1>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+                            <div class="other-options">
+                                <a [routerLink]="['/OnlineServices']"><span class="fa fa-angle-left pad-r5"></span>Back
+                                    to Online Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Apps_List">
+                    <div class="clearfix">
+                        <div class="transaction-filter">
+                            <div class="filter-caption">
+                                Search Criteria
+                            </div>
+                            <div class="row" *ngIf="!complaintdetails">
+                                <div class="col-sm-12 col-md-9">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="app-transactions-wrapper">
+                                                <div class="btn-group">
+                                                    <label class="btn btn-default">
+                                                      <input type="radio" name="rdstatus" value="all" (change)="onStatusChange('all')" checked />All
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                      <input type="radio" name="rdstatus" value="InProgress" (change)="onStatusChange('InProgress')" />Inprogress
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                      <input type="radio" name="rdstatus" value="Closed" (change)="onStatusChange('Closed')" />Closed
+                                                    </label>
+                                                  </div>
+                                                  
+                                              </div>
+                                              
+                                              </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="no-result mar-t15 with-min-height">
+                        <div class="panel panel-default">
+                            <div class="panel-body text-center" *ngIf="!complaintdetails">
+                                <ng-container *ngIf="(complaints$ | async)?.length; else noDataTemplate">
+                                    <!-- Display complaints data -->
+                                    <ng-container *ngFor="let complaint of complaints$ | async">
+                                        <div class="card mar-t15">
+                                            <div fxLayout="row" fxLayoutGap="10px" style="text-align: left;">
+                                                <div fxFlex="50%" class="left-column">
+                                                    <p *ngIf="viewbtn"><b>Name: </b>{{ complaint.Name }}</p>
+                                                    <p><b>Complaint Id:</b> {{ complaint.ComplaintId }} </p>
+                                                    <p><b>Category:</b> {{ complaint.Category_Name }} </p>
+                                                    <p><b>Ward No: </b>{{ complaint.Ward_No }} {{ complaint.Ward_name }}</p>
+                                                    <p *ngIf="!viewbtn"><b>Department:</b> {{ complaint.Dept_name }}</p>
+                                                    <p *ngIf="!viewbtn"><b>Designation: </b>{{ complaint.Designation_name }}</p>
+                                                    <!-- Add other properties with bold labels -->
+                                                </div>
+                                                <div fxFlex="50%" class="right-column">
+                                                    <p><b>Address: </b>{{ complaint.Address }}</p>
+                                                    <p *ngIf="!viewbtn"><b>Complaint Description:</b> {{ complaint.Complaint_desc }}</p>
+                                                    <p><b>Status:</b> {{ complaint.Status_Name }}</p>
+                                                    <p *ngIf="!viewbtn"><b>Mobile No: </b>{{ complaint.MobileNo }}</p>
+                                                    <p><b>Complaint Date:</b> {{ complaint.Complaint_Date | date }}</p>
+                                                    <!-- Add the "View" button here -->
+                                                </div>
+                                            </div>
+                                            <div *ngIf="viewbtn" style="margin-bottom: 5px;">
+                                                <button mat-raised-button class="btn btn-primary text-center mt-4"
+                                                    (click)="onViewButtonClick(complaint)">View</button>
+                                            </div>
+                                            <div *ngIf="!viewbtn" style="margin-bottom: 5px;">
+                                                <button mat-raised-button class="btn text-center mt-4 btn-primary"
+                                                    (click)="onbackButtonClick(complaint)">Back</button>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-template #noDataTemplate>
+                                    <img src="assets/no-result.gif" style="height: 223px;" class="img-responsive display-inline-block"
+                                        alt="No Data">
+                                </ng-template>
+                            </div>
+                            <div class="panel-body text-center" *ngIf="complaintdetails">
+                                <div class="card mar-t15" *ngFor="let complaint of complaintss">
+                                    <div fxLayout="row" fxLayoutGap="10px" style="text-align: left;">
+                                        <div fxFlex="50%" class="left-column">
+                                            <p *ngIf="viewbtn"><b>Name: </b>{{ complaint.Name }}</p>
+                                            <p><b>Complaint Id:</b> {{ complaint.ComplaintId }} </p>
+                                            <p><b>Category:</b> {{ complaint.Category_Name }} </p>
+                                            <p><b>Ward No: </b>{{ complaint.Ward_No }} {{ complaint.Ward_name }}</p>
+                                            <p *ngIf="!viewbtn"><b>Department:</b> {{ complaint.Dept_name }}</p>
+                                            <p *ngIf="!viewbtn"><b>Designation: </b>{{ complaint.Designation_name }}</p>
+                                            <!-- Add other properties with bold labels -->
+                                        </div>
+                                        <div fxFlex="50%" class="right-column">
+                                            <p><b>Address: </b>{{ complaint.Address }}</p>
+                                            <p *ngIf="!viewbtn"><b>Complaint Description:</b> {{ complaint.Complaint_desc }}</p>
+                                            <p><b>Status:</b> {{ complaint.Status_Name }}</p>
+                                            <p *ngIf="!viewbtn"><b>Mobile No: </b>{{ complaint.MobileNo }}</p>
+                                            <p><b>Complaint Date:</b> {{ complaint.Complaint_Date | date }}</p>
+                                            <!-- Add the "View" button here -->
+                                        </div>
+                                    </div>
+                                    <div *ngIf="viewbtn" style="margin-bottom: 5px;">
+                                        <button mat-raised-button class="btn btn-primary text-center mt-4"
+                                            (click)="onViewButtonClick(complaint)">View</button>
+                                    </div>
+                                    <div *ngIf="!viewbtn" style="margin-bottom: 5px;">
+                                        <button mat-raised-button class="btn text-center mt-4 btn-primary"
+                                            (click)="onbackButtonClick(complaint)">Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </section>
+        </section>
+    </div>
+
+</div>

@@ -1,0 +1,1132 @@
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+    <div class="container">
+        <section class="main-section with-min-height">
+            <section class="inner-section">
+                <div id="dvUSignup">
+                    <div>
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="row clearfix">
+                                    <h3>New Property Register</h3>
+                                    
+                                    <form [formGroup]="propertysearch" (ngSubmit)="searchPid()">
+                                        <div class="form-group col-lg-4">
+                                            <label>{{ 'PID' | translate }}</label>
+                                            <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
+                                                title="PID" type="text" value="">
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <label for="drpFinYear">{{'billyear' | translate}}</label>
+                                            <select class="form-control" id="drpFinYear" formControlName="Assyear"
+                                                name="FinYear">
+                                                <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <br>
+                                            <button class="button-control" id="btnSearch" type="submit"
+                                                [disabled]="propertysearch.invalid">
+                                                <span class="fa fa-search pad-r5"></span>{{ 'search' | translate }}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                               
+
+                                <form [formGroup]="newPropertyreg" *ngIf="KhataApplicationForm" (ngSubmit)="onsubmit()">
+                                    <h3>New Property Registration</h3>
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <div class="form-control mar-b20">
+                                            <label>
+                                                <input type="checkbox" formControlName="IsLayout"> Is Layout?
+                                            </label>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading326">
+                                                <div class="panel-title">
+                                                    <a role="button" [ngClass]="{'disabled-link': !attachdata}" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapse326" aria-expanded="true"
+                                                        aria-controls="collapse326">{{'OWNERdetails'|translate}}</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse326" [ngClass]="{'in': attachdata}" class="panel-collapse collapse in" role="tabpanel"
+                                                aria-labelledby="heading326" aria-expanded="true">
+                                                <div class="panel-body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="name">{{ 'FIRST_NAME' | translate }}</label>
+                                                                <input type="text" name="name" id="name"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_Name_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME'|
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathername" id="fathername"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_HusFather_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathernameEnglish"
+                                                                    id="fathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_Name_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="husbandfathernameEnglish"
+                                                                    id="husbandfathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_HusFather_Eng">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <button [disabled]="!checkFormValidity()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse336"
+                                                        aria-expanded="false" aria-controls="collapse336">Next</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading336">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkFormValidity()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse336"
+                                                        aria-expanded="false" aria-controls="collapse336">2. ವರ್ಗಾವಣೆ
+                                                        ಪಡೆದವರ ಖರಿದಿದಾರರ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse336" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading336" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="OccupierName_Kan">{{ 'FIRST_NAME' |
+                                                                    translate }}</label>
+                                                                <input type="text" name="TransferFirstName"
+                                                                    id="TransferFirstName" class="form-control"
+                                                                    formControlName="OccupierName_Kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'HUSBAND/FATHER_NAME'|
+                                                                    translate}}</label>
+                                                                <input type="text" name="TransferFatherName"
+                                                                    id="TransferFatherName" class="form-control"
+                                                                    formControlName="OccupierName_HusFather_Kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="TransferEnglishFirstName"
+                                                                    id="TransferEnglishFirstName" class="form-control"
+                                                                    formControlName="OccupierName_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'HUSBAND/FATHER_NAME_IN_ENGLISH'
+                                                                    | translate}}</label>
+                                                                <input type="text" name="TransferEnglishFatherName"
+                                                                    id="TransferEnglishFatherName" class="form-control"
+                                                                    formControlName="OccupierName_HusFather_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button [disabled]="!checkFormValidity1()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse337"
+                                                        aria-expanded="false" aria-controls="collapse337">Next</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading337">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkFormValidity1()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse337"
+                                                        aria-expanded="false" aria-controls="collapse337">3. ಸ್ವತ್ತಿನ
+                                                        ಪ್ರದೇಶದ ವಿವರ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse337" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading337" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'WARD_NUMBER_NAME' | translate}}</label>
+                                                                <select name="Ward_Id" id="" formControlName="Ward_Id" class="form-control">
+                                                                    <option *ngFor="let street of getwardsetails" [value]="street?.Ward_Name">{{street?.Ward_Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'STAGE_PHASE_AREA'| translate}}</label>
+                                                                <select name="privateGatta" id="privateGatta"
+                                                                    class="form-control" formControlName="Block_Id">
+                                                                    <option value="0">select</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'AREA' | translate}}</label>
+                                                                <select name="privateplace" id="privateplace"
+                                                                    class="form-control" formControlName="Street_Id">
+                                                                    <option value="0">select</option>
+                                                                    <option value="1">1</option>
+                                                                    <option value="2">2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'CROSS_ROADS' | translate}}</label>
+                                                                <textarea name="privateRoad" id="privateRoad" rows="1"
+                                                                    class="form-control"
+                                                                    formControlName="Address"></textarea>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'CITY' | translate}}</label>
+                                                                <input type="text" name="privateCity" id="privateCity"
+                                                                    class="form-control" formControlName="City">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <button [disabled]="!checkFormValidity2()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse338"
+                                                        aria-expanded="false" aria-controls="collapse338">Next</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading338">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkFormValidity2()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse338"
+                                                        aria-expanded="false" aria-controls="collapse338">4.ಸಂಪರ್ಕಕ್ಕಾಗಿ
+                                                        ಅರ್ಜಿದಾರರ ಅಂಚೆ ವಿಳಾಸ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse338" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading338" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'NAME'| translate}}</label>
+                                                                <input type="text" name="TPAName" id="TPAName"
+                                                                    class="form-control"
+                                                                    formControlName="Contact_Name"><!---TPA={Transfer Post Address}-->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'ADDRESS'| translate}}</label>
+                                                                <textarea name="TPAAddress" id="TPAAddress" rows="1"
+                                                                    class="form-control"
+                                                                    formControlName="Contact_Addr"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <span style="color: red;">*</span>
+                                                                <label for="">{{'MOBILE_NUMBER_OF_APPLICANT'|translate
+                                                                    }}</label>
+                                                                <input type="number" name="TPANumber" id="TPANumber"
+                                                                    class="form-control"
+                                                                    formControlName="Applicant_MobileNo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <span style="color: red;">*</span>
+                                                                <label for="">{{'EMAIL_OF_APPLICANT' |translate
+                                                                    }}</label>
+                                                                <input type="email" name="TPAEmail" id="TPAEmail"
+                                                                    class="form-control"
+                                                                    formControlName="Applicant_Email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <span style="color: red;">*</span>
+                                                                <label for="">{{'FlatHouseNo' |translate }}</label>
+                                                                <input name="HouseNo" id="HouseNo" class="form-control"
+                                                                    formControlName="HouseNo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <span style="color: red;">*</span>
+                                                                <label for="">{{'SerialNo' |translate }}</label>
+                                                                <input name="SerialNo" id="SerialNo"
+                                                                    class="form-control" formControlName="SerialNo">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <span style="color: red;">*</span>
+                                                                <label for="">{{'PropertyNo' |translate }}</label>
+                                                                <input name="PropertyNo" id="PropertyNo"
+                                                                    class="form-control" formControlName="PropertyNo">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <button [disabled]="!checkFormValidity3()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse339"
+                                                        aria-expanded="false" aria-controls="collapse339">Next</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading339">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkFormValidity3()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse339"
+                                                        aria-expanded="false" aria-controls="collapse339">
+                                                        5. ಐಟಂ 3ರಲ್ಲಿನ ಆಸ್ತಿಯ ವಿವರ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse339" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading339" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>{{ 'AREA' | translate }}</label>
+                                                                        <div class="form-check form-control">
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="GovtDevelopmentAuthID"
+                                                                                id="authorityType1"
+                                                                                formControlName="GovtDevelopmentAuthID"
+                                                                                value="ಅಭಿವೃದ್ಧಿ ಪ್ರಾಧಿಕಾರ">
+                                                                            <label class="form-check-label"
+                                                                                for="authorityType1"> ಅಭಿವೃದ್ಧಿ
+                                                                                ಪ್ರಾಧಿಕಾರ</label>
+                                                                                &nbsp;&nbsp;
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="GovtDevelopmentAuthID"
+                                                                                id="authorityType2"
+                                                                                formControlName="GovtDevelopmentAuthID"
+                                                                                value="ಕ . ಗೃ . ಮಂಡಳಿಯಿಂದ">
+                                                                            <label class="form-check-label"
+                                                                                for="authorityType2"> ಕ . ಗೃ .
+                                                                                ಮಂಡಳಿಯಿಂದ</label>
+                                                                                &nbsp;&nbsp;
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="GovtDevelopmentAuthID"
+                                                                                id="authorityType3"
+                                                                                formControlName="GovtDevelopmentAuthID"
+                                                                                value="ರೆವಿನ್ಯೂ ಬಡಾವಣ">
+                                                                            <label class="form-check-label"
+                                                                                for="authorityType3"> ರೆವಿನ್ಯೂ
+                                                                                ಬಡಾವಣ</label>
+                                                                                &nbsp;&nbsp;
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="GovtDevelopmentAuthID"
+                                                                                id="authorityType4"
+                                                                                formControlName="GovtDevelopmentAuthID"
+                                                                                value="ಗ್ರಾಮ ಠಾಣಾ">
+                                                                            <label class="form-check-label"
+                                                                                for="authorityType4"> ಗ್ರಾಮ ಠಾಣಾ</label>
+                                                                                &nbsp;&nbsp;
+                                                                            <input class="form-check-input" type="radio"
+                                                                                name="GovtDevelopmentAuthID"
+                                                                                id="authorityType5"
+                                                                                formControlName="GovtDevelopmentAuthID"
+                                                                                value="ಇತರೆ">
+                                                                            <label class="form-check-label"
+                                                                                for="authorityType5"> ಇತರೆ</label>
+                                                                        </div>
+                                                                        <!-- Add error message if needed -->
+                                                                        <div
+                                                                            *ngIf="newPropertyreg.get('GovtDevelopmentAuthID')?.hasError('required') && newPropertyreg.get('GovtDevelopmentAuthID')?.touched">
+                                                                            Please select an option.
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4"></div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-4">
+
+                                                            <div class="form-group">
+                                                                <label>{{ 'IF_THERE_IS_A_VACCANCY' | translate
+                                                                    }}</label>
+                                                                <div class="form-control">
+                                                                    <input type="radio" name="emptyname" id="emptyname1"
+                                                                        [(ngModel)]="physicalProperty"
+                                                                        formControlName="PhysicalProperty"
+                                                                        value="OPEN LAND">
+                                                                    <label for="emptyname1">OPEN LAND</label>
+
+                                                                    <input type="radio" name="emptyname" id="emptyname2"
+                                                                        [(ngModel)]="physicalProperty"
+                                                                        formControlName="PhysicalProperty"
+                                                                        value="CONSTRUCTED">
+                                                                    <label for="emptyname2">CONSTRUCTED</label>
+                                                                </div>
+
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{ 'MESURE_LENGTH_OR_WIDTH' | translate
+                                                                    }}</label>
+                                                                <div class="form-control">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="sizevarientheight" id="sizevarientheight1"
+                                                                        formControlName="UnitType" value="Feet">
+                                                                    <label class="form-check-label"
+                                                                        for="sizevarientheight1">Feet</label>
+
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="sizevarientheight" id="sizevarientheight2"
+                                                                        formControlName="UnitType" value="Meter">
+                                                                    <label class="form-check-label"
+                                                                        for="sizevarientheight2">Meter</label>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'PROPERTY_MODEL'|translate}}</label>
+                                                                <select name="propertymadari" id="propertymadari"
+                                                                    class="form-control" formControlName="PropertyType">
+                                                                    <option value="">select</option>
+                                                                    <option value="0">1</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'ConstructionType'|translate}}</label>
+                                                                <select name="ConstructionType" id="ConstructionType"
+                                                                    class="form-control"
+                                                                    formControlName="ConstructionType">
+                                                                    <option value="">select</option>
+                                                                    <option value="0">Assessed</option>
+                                                                    <option value="1">Unassessed</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'OldPID'|translate}}</label>
+                                                                <input class="form-control" formControlName="OldPID">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label
+                                                                    for="">{{'DATE_OF_CONSTRUJCTION_OF_BUILDING'|translate}}</label>
+                                                                <input type="date" formControlName="Construction_Date"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Old_AssessmentNo'|translate}}</label>
+                                                                <input formControlName="Old_AssessmentNo"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'New_AssessmentNo'|translate}}</label>
+                                                                <input formControlName="New_AssessmentNo"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Desc_PropertyArea1'|translate}}</label>
+                                                                <textarea formControlName="Desc_PropertyArea1"
+                                                                    class="form-control"></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Desc_PropertyArea2'|translate}}</label>
+                                                                <textarea formControlName="Desc_PropertyArea2"
+                                                                    class="form-control"></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Property_Usage_Id'|translate}}</label>
+                                                                <select id="Property_Usage_Id" class="form-control" formControlName="Property_Usage_Id">
+                                                                    <option *ngFor="let items of PropertyUsagelists" [value]="items?.usagename">{{ items?.usagename
+                                                                        }}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Assessment_Year'|translate}}</label>
+                                                                <input formControlName="Assessment_Year"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'RR_No'|translate}}</label>
+                                                                <input formControlName="RR_No" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Page_No'|translate}}</label>
+                                                                <input formControlName="Page_No" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Property_Class_Id'|translate}}</label>
+                                                                <select id="Property_Class_Id" class="form-control" formControlName="Property_Class_Id">
+                                                                    <option *ngFor="let classlist of PropertyClassList" [value]="classlist?.classname">{{ classlist?.classname }}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="container-fluid">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>Length</th>
+                                                                        <th></th>
+                                                                        <th>Breadth</th>
+                                                                        <th></th>
+                                                                        <th>TotalArea</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>ಎ)</td>
+                                                                        <td>{{ 'PropertyMutation.TOTAL_PLOT_AREA' |
+                                                                            translate }}</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="PlotArea_Length"
+                                                                                (input)="calculateTotalPlotArea()">
+                                                                        </td>
+                                                                        <td>x</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="PlotArea_Breadth"
+                                                                                (input)="calculateTotalPlotArea()">
+                                                                        </td>
+                                                                        <td>=</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="TotalPlotArea"
+                                                                                [value]="totalArea1"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>ಬಿ)</td>
+                                                                        <td>{{
+                                                                            'PropertyMutation.BUILDING_TOTAL_AREA' |
+                                                                            translate }}</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="BuildUp_Length"
+                                                                                (input)="calculateTotalBuildingArea()">
+                                                                        </td>
+                                                                        <td>x</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="BuildUp_Breadth"
+                                                                                (input)="calculateTotalBuildingArea()">
+                                                                        </td>
+                                                                        <td>=</td>
+                                                                        <td><input type="text" class="form-control"
+                                                                                formControlName="TotalBuildUpArea"
+                                                                                [value]="totalArea2"></td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="text-center" *ngIf="physicalProperty === 'CONSTRUCTED'">
+                                                        <button class="btn btn-primary" type="button"
+                                                            (click)="openModal()"> <span
+                                                                class="fa fa-plus pad-r5"></span> Add Floors</button>
+                                                    </div>
+                                                    <app-add-floor></app-add-floor>
+
+                                                    <div *ngIf="floorDetails.length > 0">
+                                                        <h2>Floor Details</h2>
+                                                        <div class="table-responsive">
+                                                            <table id="example" class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                       
+                                                                        <th>Floor type</th>
+                                                                        <th>Floor Usage</th>
+                                                                        <th>Floor Level</th>
+                                                                        <th>Floor Class</th> <!-- Added Floor Class -->
+                                                                        <th>Slab Type</th> <!-- Added Floor Class -->
+                                                                        <th>Plinth Area Assessed</th>
+                                                                        <th>Plinth Area Unassessed</th>
+
+                                                                        <th>Building Age</th>
+                                                                        <th>Tax Rebate</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let floor of floorDetails">
+                                                                       
+                                                                        <td>{{ floor.FloorType_Id }}</td>
+                                                                        <td>{{ floor.FloorUsage_Id }}</td>
+                                                                        <td>{{ floor.FloorLevel_Id }}</td>
+                                                                        <td>{{ floor.FloorClass_Id }}</td>
+                                                                        <!-- Adjusted for Floor Class -->
+                                                                        <td>{{ floor.SlabType_Id }}</td>
+                                                                        <td>{{ floor.PlinthArea_Assessed }}</td>
+                                                                        <td>{{ floor.PlinthArea_UnAssessed }}</td>
+                                                                        <td>{{ floor.BuildingAge }}</td>
+                                                                        <td>{{ floor.Tax_Rebate }}</td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                        <h4>Mandatory Attachments</h4>
+                                                        <table class="table table-bordered">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>Name</th>
+                                                              <th>Upload</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr *ngFor="let attachment of mandatoryAttachments">
+                                                              <td>{{ attachment.applicationformattachmentName }}</td>
+                                                              <td>
+                                                                <input type="file" (change)="onFileSelected($event, attachment)">
+                                                                
+                                                              </td>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                    </div>
+                                                      
+                                                      
+                                                      <div class="col-md-6">
+                                                        <h4>Optional Attachments</h4>
+                                                        <table class="table table-bordered">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>Name</th>
+                                                              <th>Upload</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr *ngFor="let attachment of optionalAttachments">
+                                                              <td>{{ attachment.applicationformattachmentName }}</td>
+                                                              <td>
+                                                                <input type="file" (change)="onFileSelected($event, attachment)">
+                                                              
+                                                              </td>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                      </div>
+                                                    </div>
+
+                                                    <div class="main-section-padding">
+                                                        <div class="action-contents transactions">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-6">
+
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <ul class="list-unstyled action-btns">
+                                                                        <li>
+                                                                            <button class="button-control inverse"
+                                                                                id="btnClear" type="reset"><span
+                                                                                    class="fa fa-refresh pad-r5"></span>Clear
+                                                                                Form</button>
+                                                                        </li>
+                                                                        <li>
+                                                                            <button class="button-control"
+                                                                                id="btnComplaint" type="submit"><span
+                                                                                    class="fa fa-check-circle pad-r5"></span>Submit</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    
+                                    </div>
+                                </form>
+                                <div class="row clearfix" *ngIf="mutationforms || podiforms">
+                                    <h3> {{ 'Mutation' | translate }}</h3>
+                                    <form [formGroup]="propertysearch" (ngSubmit)="searchPid()">
+                                        <div class="form-group col-lg-4">
+                                            <label>{{ 'PID' | translate }}</label>
+                                            <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
+                                                title="PID" type="text" value="">
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <label for="drpFinYear">{{'billyear' | translate}}</label>
+                                            <select class="form-control" id="drpFinYear" formControlName="Assyear" name="FinYear">
+                                              <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <br>
+                                            <button class="button-control" id="btnSearch" type="submit"
+                                                [disabled]="propertysearch.invalid">
+                                                <span class="fa fa-search pad-r5"></span>{{ 'search' | translate }}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <form [formGroup]="mutation" *ngIf="mutationforms" (ngSubmit)="onMutsubmit()">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading326">
+                                                <div class="panel-title">
+                                                    <a role="button" [ngClass]="{'disabled-link': !attachdata}" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapse326" aria-expanded="false"
+                                                        aria-controls="collapse326">{{'OWNERdetails'|translate}}</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse326" [ngClass]="{'in': attachdata}" class="panel-collapse collapse " role="tabpanel"
+                                                aria-labelledby="heading326" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="PID">{{ 'PID' | translate }}</label>
+                                                                <input type="text" name="PID" id="PID"
+                                                                    class="form-control"
+                                                                    formControlName="PID">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="Owner_Name_kan">{{ 'FIRST_NAME' | translate }}</label>
+                                                                <input type="text" name="Owner_Name_kan" id="Owner_Name_kan"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_Name_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME'|
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathername" id="fathername"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_HusFather_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'Owner_Name_Eng' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathernameEnglish"
+                                                                    id="fathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_Name_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="husbandfathernameEnglish"
+                                                                    id="husbandfathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_HusFather_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button [disabled]="!checkMutationFormValidity()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse336"
+                                                        aria-expanded="false" aria-controls="collapse336">Next</button>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading336">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkMutationFormValidity()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse336"
+                                                        aria-expanded="false" aria-controls="collapse336">2. ವರ್ಗಾವಣೆ
+                                                        ಪಡೆವವರ ವಿವರ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse336" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading336" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="OccupierName_Kan">{{ 'FIRST_NAME' |
+                                                                    translate }}</label>
+                                                                <input type="text" name="TransferFirstName"
+                                                                    id="TransferFirstName" class="form-control"
+                                                                    formControlName="Mut_Owner_Name_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'HUSBAND/FATHER_NAME'|
+                                                                    translate}}</label>
+                                                                <input type="text" name="TransferFatherName"
+                                                                    id="TransferFatherName" class="form-control"
+                                                                    formControlName="Mut_Owner_HusFather_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="TransferEnglishFirstName"
+                                                                    id="TransferEnglishFirstName" class="form-control"
+                                                                    formControlName="Mut_Owner_Name_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="address">{{'HUSBAND/FATHER_NAME_IN_ENGLISH'
+                                                                    | translate}}</label>
+                                                                <input type="text" name="TransferEnglishFatherName"
+                                                                    id="TransferEnglishFatherName" class="form-control"
+                                                                    formControlName="Mut_Owner_HusFather_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button [disabled]="!checkMutationFormValidity1()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse337"
+                                                        aria-expanded="false" aria-controls="collapse337">Next</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading" role="tab" id="heading337">
+                                                <div class="panel-title">
+                                                    <a [ngClass]="{'disabled-link': !checkMutationFormValidity1()}"
+                                                        class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse337"
+                                                        aria-expanded="false" aria-controls="collapse337">3. ಸ್ವತ್ತಿನ
+                                                        ಪ್ರದೇಶದ ವಿವರ</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse337" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="heading337" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Assessment_Year'|translate}}</label>
+                                                                <input formControlName="Assessment_Year"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'ApproverFileID'|translate}}</label>
+                                                                <input formControlName="ApproverFileID"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'ApproverName'|translate}}</label>
+                                                                <input formControlName="ApproverName"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label
+                                                                    for="">{{'approverDesignation'|translate}}</label>
+                                                                <input formControlName="approverDesignation"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'ApproverDate'|translate}}</label>
+                                                                <input formControlName="ApproverDate"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'RR_No'|translate}}</label>
+                                                                <input formControlName="RR_No" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'New_RR_No'|translate}}</label>
+                                                                <input formControlName="New_RR_No" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Page_No'|translate}}</label>
+                                                                <input formControlName="Page_No" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'New_Page_No'|translate}}</label>
+                                                                <input formControlName="New_Page_No"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'MutationType_Id'|translate}}</label>
+                                                                <input formControlName="MutationType_Id"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'Owner_Photo'|translate}}</label>
+                                                                <input formControlName="Owner_Photo" type="file"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="">{{'NewOwnerImage'|translate}}</label>
+                                                                <input formControlName="NewOwnerImage" type="file"
+                                                                    class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="main-section-padding">
+                                                        <div class="action-contents transactions">
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-6">
+
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <ul class="list-unstyled action-btns">
+                                                                        <li>
+                                                                            <button class="button-control inverse"
+                                                                                id="btnClear" type="reset"><span
+                                                                                    class="fa fa-refresh pad-r5"></span>Clear
+                                                                                Form</button>
+                                                                        </li>
+                                                                        <li>
+                                                                            <button class="button-control"
+                                                                                id="btnComplaint" type="submit"><span
+                                                                                    class="fa fa-check-circle pad-r5"></span>Submit</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form [formGroup]="podiform" *ngIf="podiforms" (ngSubmit)="onPodisubmit()">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading326">
+                                                <div class="panel-title">
+                                                    <a role="button" [ngClass]="{'disabled-link': !attachdata}" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse326" aria-expanded="false"
+                                                        aria-controls="collapse326">{{'OWNERdetails'|translate}}</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse326" [ngClass]="{'in': attachdata}" class="panel-collapse collapse " role="tabpanel"
+                                                aria-labelledby="heading326" aria-expanded="false">
+                                                <div class="panel-body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="PID">{{ 'PID' | translate }}</label>
+                                                                <input type="text" name="PID" id="PID"
+                                                                    class="form-control"
+                                                                    formControlName="PID">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="Owner_Name_kan">{{ 'FIRST_NAME' | translate }}</label>
+                                                                <input type="text" name="Owner_Name_kan" id="Owner_Name_kan"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_Name_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME'|
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathername" id="fathername"
+                                                                    class="form-control"
+                                                                    formControlName="Owner_HusFather_kan">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'Owner_Name_Eng' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="fathernameEnglish"
+                                                                    id="fathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_Name_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="number">{{'HUSBAND/FATHER_NAME_IN_ENGLISH' |
+                                                                    translate}}</label>
+                                                                <input type="text" name="husbandfathernameEnglish"
+                                                                    id="husbandfathernameEnglish" class="form-control"
+                                                                    formControlName="Owner_HusFather_Eng">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button [disabled]="!checkMutationFormValidity()" role="button"
+                                                        class="btn btn-primary" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapse336"
+                                                        aria-expanded="false" aria-controls="collapse336">Next</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   
+                                                      
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

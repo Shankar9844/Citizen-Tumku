@@ -1,0 +1,109 @@
+
+<div class="topbar">
+    <div class="container text-right">
+        <a (click)="switchLanguage('en')" translate>English</a> | <span class="pad-l10 pad-r15"> <a (click)="switchLanguage('kn')" translate>Kannada</a></span>
+        
+    </div>
+</div>
+<nav class="navbar navbar-default" id="main-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="pull-right">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-nav-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              
+            </div>
+            <a class="navbar-brand" href="" title="{{ 'navbar.brand.title' | translate }}">
+                <img style="width: 300px" src="assets/logo/Group 37.png" class="img-responsive hidden-xs"
+                    alt="{{ 'navbar.brand.alt' | translate }}">
+                <img src="assets/logo/Group 37 (1).png" style="width: 250px" alt="{{ 'navbar.smallLogo' | translate }}"
+                    class="img-responsive visible-xs">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="main-nav-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a [routerLink]="['/OnlineServices']" >
+                        {{ 'navbar.onlineServices' | translate }}
+                    </a>
+                   
+                      
+                </li>
+                <li class="devider hidden-xs">|</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        {{ 'navbar.help' | translate }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/faq']" >{{ 'navbar.faqs' | translate }}</a></li>
+                        <li><a href="">{{ 'navbar.userManual' | translate }}</a></li>
+                    </ul>
+                </li>
+                <li class="devider hidden-xs">|</li>
+                <li><a href="">{{ 'navbar.contact' | translate }}</a></li>
+                <li class="hidden-xs" *ngIf="isLoggedIn" ><button title="User Login" class="main-nav-login-btn" (click)="onLogout()">Logout<span class="fa fa-angle-right"></span></button></li>
+                <li class="hidden-xs" *ngIf="!isLoggedIn" ><a title="User Login" class="main-nav-login-btn" [routerLink]="['/Login']" >Login<span class="fa fa-angle-right"></span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="userbar" *ngIf="isLoggedIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-5 col-lg-5 left-links hidden-xs">
+                    Welcome, <span class="pad-r20 text-bold"> {{Name}} </span>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-7 col-lg-7 text-right">
+                    <!-- Single button -->
+                    <a  [routerLink]="['/Dashboard']" class="link"><span class="fa fa-dashboard pad-r5 hidden-xs"></span>Dashboard</a>
+                    <!-- <a  [routerLink]="['/onlineservices']" class="link"><span class="fa fa-globe pad-r5 hidden-xs"></span>Online Services</a> -->
+                   
+                   
+                    
+                    
+                    <div class="user-menu btn-group">
+                        <button type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="fa fa-user-circle text-2x pad-r5"></span><span class="fa fa-caret-down pad-l5"></span><span class="hidden">User</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="top-arrow"></div>
+                            <div class="profile-block">
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4">
+                                        <div class="user-profile-photo">
+                                            <a href="">
+                                              <img src="assets/icons/default-profile-img.jpg" class="img-circle img-responsive" alt="Gender Profile Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8">
+                                        <div class="user-name">{{Name}}</div>
+                                        <div class="user-email">{{MobileNo}}</div>
+                                        <div class="edit-profile"><a [routerLink]="['/Profile']"  class="text-bold text-uppercase"><span class="fa fa-pencil-square-o pad-r5"></span>Edit profile</a></div>
+                                        
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            <div class="logout-block">
+                                <div class="row clear-fix">
+                                    <div class="col-xs-12 col-sm-12 text-center">
+                                        <button id="lbLogout" class="button-control small" (click)="onLogout()" ><span class="fa fa-power-off pad-r10"></span>Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>

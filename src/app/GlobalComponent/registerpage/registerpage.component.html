@@ -1,0 +1,139 @@
+<app-pageloading *ngIf="loading"></app-pageloading>
+<div class="page-wrapper innerpages mar-t30" *ngIf="!loading">
+
+  <div class="container">
+    <section class="main-section login-section">
+      <section class="inner-section">
+        <div class="row form">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+            <div class="login-wrapper" style="position: relative; z-index: 1;">
+              
+              <h1>{{ 'login.userRegistration' | translate }}</h1>
+              <div class="contents">
+                <form [formGroup]="Registerform" (ngSubmit)="CheckMobileNo()" *ngIf="!otpshow">
+                    <!-- Mobile Number field -->
+                    <div class="form-group">
+                      <label for="txtMobileNumber">{{ 'login.enterMobileNumber' | translate }}</label>
+                      <input autocomplete="off" class="form-control" id="txtMobileNumber" formControlName="mobileNo" type="text">
+                      <div *ngIf="Registerform.get('mobileNo')?.hasError('required')">
+                        {{ 'validation.requiredMobileNumber' | translate }}
+                      </div>
+                    </div>
+                  
+                    <!-- Confirm Mobile Number field -->
+                    <div class="form-group">
+                      <label for="confirmMobileNo">{{ 'login.confirmMobileNumber' | translate }}</label>
+                      <input autocomplete="off" class="form-control" id="confirmMobileNo" formControlName="ConfirmMobileNo" type="text">
+                      <div *ngIf="Registerform.get('ConfirmMobileNo')?.hasError('required')">
+                        {{ 'validation.requiredConfirmMobileNumber' | translate }}
+                      </div>
+                    </div>
+                  
+                    <app-captcha></app-captcha>
+                  
+                    <!-- Captcha field -->
+                    <div class="form-group">
+                      <label for="CaptchaInputText">{{ 'login.CaptchaInputText' | translate }}</label>
+                      <input autocomplete="off" class="form-control" id="CaptchaInputText" name="CaptchaInputText" formControlName="CaptchaInputText">
+                      <!-- <div *ngIf="Registerform.get('CaptchaInputText')?.hasError('required')">
+                        {{ 'validation.requiredCaptchaInput' | translate }}
+                      </div> -->
+                      <div *ngIf="!Registerform.valid || !areValuesEqual('mobileNo', 'ConfirmMobileNo')" style="color:red">
+                        <b>{{ 'validation.valuesNotEqual' | translate }}</b>
+                      </div>
+                    </div>
+                  
+                    <!-- Button -->
+                    <button type="submit" class="button-control mar-b15" style="width:100%" [disabled]="!Registerform.valid || !areValuesEqual('mobileNo', 'ConfirmMobileNo')">
+                      <span class="fa fa-check-circle pad-r5"></span>{{ 'login.getOtp' | translate }}
+                    </button>
+                  </form>
+                  <form [formGroup]="OTPform" (ngSubmit)="OnotpSubmit()" *ngIf="otpshow && !personaldetailsforms">
+                    <label>this is your OTP {{otp}}</label>
+                    <div class="form-group text-center">
+                        <label for="txtPassword">{{ 'login.otpmobileLabel' | translate }}</label>
+                        <ng-otp-input [config]="{ length: 4, allowNumbersOnly: true }" class="text-center"
+                            formControlName="Otp" (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                            <div *ngIf="OTPform.get('Otp')?.hasError('required')">
+                              {{ 'validation.requiredOtp' | translate }}
+                          </div>
+                          <div *ngIf="OTPform.get('Otp')?.hasError('pattern')">
+                              {{ 'validation.validOtp' | translate }}
+                          </div>
+                    </div>
+                    <button type="submit" class="button-control mar-b15" style="width:100%" >
+                      <span class="fa fa-check-circle pad-r5"></span>{{ 'login.ConfirmOtp' | translate }}
+                    </button>
+                    </form>
+
+                    <form [formGroup]="personaldetails" *ngIf="personaldetailsforms" (ngSubmit)="SubmitPersonaldetails()">
+                      <div class="form-group">
+                        <label for="FirstName">{{ 'login.Name' | translate }}</label>
+                        <input autocomplete="off" class="form-control" id="FirstName" formControlName="FirstName" type="text">
+                        <div *ngIf="personaldetails.get('FirstName')?.hasError('required')">
+                          {{ 'validation.txtName' | translate }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="LastName">{{ 'login.LastName' | translate }}</label>
+                        <input autocomplete="off" class="form-control" id="LastName" formControlName="LastName" type="text">
+                        <div *ngIf="personaldetails.get('LastName')?.hasError('required')">
+                          {{ 'validation.txtLname' | translate }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="Password">{{ 'login.txtPassword' | translate }}</label>
+                        <input autocomplete="off" class="form-control" id="Password" formControlName="Password" type="password">
+                        <div *ngIf="personaldetails.get('Password')?.hasError('required')">
+                          {{ 'validation.txtPassword' | translate }}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="txtcnfpassword">{{ 'login.txtcnfpassword' | translate }}</label>
+                        <input autocomplete="off" class="form-control" id="txtcnfpassword" formControlName="txtcnfpassword" type="password">
+                        <div *ngIf="personaldetails.get('txtcnfpassword')?.hasError('required')">
+                          {{ 'validation.txtcnfpassword' | translate }}
+                        </div>
+                        <!-- Add error message if passwords do not match -->
+                        <div *ngIf="!arePasswordsMatching()" style="color:red">
+                         <b> Password and Confirm Password do not match.</b>
+                        </div>
+                      </div>
+                      <button type="submit" class="button-control mar-b15" style="width:100%" [disabled]="!personaldetails.valid || !arePasswordsMatching()">
+                        <span class="fa fa-check-circle pad-r5"></span>{{ 'login.Submit' | translate }}
+                      </button>
+                    </form>
+                    
+              </div>
+          </div>
+            <div class="hidden-xs" style="position: absolute; bottom: 0; left: 0; right: 0; height: 100%; top: 320px; background-image: url('assets/logo/msr.jpg'); background-size: cover; background-position: bottom; background-repeat: no-repeat; z-index: 0; opacity: 0.3;"></div>
+          </div>
+          <div class="hidden-xs hidden-sm col-md-6 col-lg-6 login-slider" style="display: flex;
+                  flex-direction: column;
+                  justify-content: space-around;">
+           <div class="login-slider1">
+            <div class="slider-container">
+              <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentIndex">
+                <img [src]="slide.image" alt="Slide Image" />
+                <div class="caption" [class.active]="i === currentIndex">{{ slide.caption }}
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <div class="navigation-dots col-md-12">
+                <span class="dot" *ngFor="let slide of slides; let i = index" [class.active]="i === currentIndex"
+                  (click)="showSlide(i)"></span>
+              </div>
+            </div>
+
+          </div>
+
+          
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+  <div></div>
+</div>

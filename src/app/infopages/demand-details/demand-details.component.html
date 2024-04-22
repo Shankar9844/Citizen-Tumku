@@ -1,0 +1,651 @@
+<div class="page-wrapper innerpages mar-t30" id="dvMainBody">
+
+    <div class="container">
+        <section class="main-section witn-min-height">
+            <section class="inner-section">
+
+                <div class="mar-t30 " style="position: relative;padding: 10px;">
+                    <div class="page-heading">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-9 col-sm-9">
+
+                            </div>
+                            <div class="hidden-xs hidden-sm col-lg-3 col-sm-3">
+                                <div class="other-options">
+                                    <a (click)="goBack()">
+                                        <span class="fa fa-angle-left pad-r5"></span><b>{{ 'goback' | translate }}</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-warning" (click)="downloaddemand()" id="demandbtn">Download
+                            Demand</button>
+                    </div>
+
+                    <div #content id="demandpdf" class="container-fluid text-center">
+                        <div *ngIf="propertyDemand">
+                            <div id="contentone" class="bill mt-5 ng-star-inserted" *ngFor="let item of assessmentData"
+                                style="background-color: #FFFFFF; border: solid 2px #000000;padding: 20px">
+
+                                <div>
+                                    <div class="float-left"><img src="assets/logo/Muda-Logo.png" alt=""
+                                            style="height: 100px; width: 100px;">
+                                    </div>
+                                    <div class="p-1 text-center">
+                                        <h3><b>ತುಮಕೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ,ತುಮಕೂರು</b></h3>
+                                        <h5>ನಮೂನೆ-2
+
+                                            (ನಿಯಮ 19 ನೋಡಿ)</h5>
+
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="block1 p-2">
+                                    <div class="text-center">
+                                        <h5><b>Demand Note - Assessment Year:{{ item.ass_Year }}</b>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6">PID:<b>{{ item.PID }}</b> </div>
+                                        <div class="col-md-6">Date:<b>{{ currentDateTime }}</b></div>
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="row">
+
+                                    <div class="col-md-4">Old Assessment No: <b>{{ item.AssessmentNo }}</b></div>
+                                    <div class="col-md-4">Property Type:<b>{{ item.PropertyType }}</b></div>
+                                    <div class="col-md-4">New Assessment No:<b>{{ item.AssessmentNo }}</b></div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="float-left ml-3" style="padding-top: 1rem;"><b>
+                                                ಆಸ್ತಿತೆರಿಗೆ ವಿವರ ಪಟ್ಟಿ</b></h5>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="block3">
+
+                                    <div id="currentbilltable" class="table-responsive"
+                                        style="background-color: #FFFFFF;">
+                                        <table class="table table-bordered">
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>
+                                                        <div>1</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ಮಾಲೀಕನ ಹೆಸರು</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.FName }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>2</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ಅನುಭೋಗದಾರನ ಹೆಸರು</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.OccupierNameKan }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>3</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ವಿಳಾಸ</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.Address1 }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>4</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ತೆರಿಗೆ ನಿರ್ಧರಣೆ ವರ್ಷ</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.AssessmentYear }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>5</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ವಾರ್ಡಿನ ನಂ ಮತ್ತು ಹೆಸರು</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.WardId }} & {{ item.Wardname }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>6</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ಬೀದಿ ಅಥವಾ ಪ್ರದೇಶದ ಹೆಸರು</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.StreetAddress }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>
+                                                        <div>ಖಾಲಿ ಭೂಮಿ</div>
+                                                    </td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>7</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ನಿವೇಶನದ ಅಥವಾ ಕಟ್ಟಡದ ನಂ</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.SiteNo }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>8</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ನಿವೇಶನದ ಒಟ್ಟು ವಿಸ್ತೀರ್ಣ</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.TotSiteArea }} sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div>9</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>ಕಟ್ಟಡ ಆವರಿಸಿದ ಭೂಮಿಯ ವಿಸ್ತೀರ್ಣ</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{{ item.VacantLandB }} sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a518">
+                                                        <div class="r11">10</div>
+                                                    </td>
+                                                    <td class="a519">
+                                                        <div class="r11">ಎಲ್ಲಾ ಅಂತಸ್ತುಗಳೂ ಸೇರಿ ಕಟ್ಟಡ ನಿರ್ಮಾಣವಾಅಗಿರುವ
+                                                            ಒಟ್ಟು
+                                                            ಪ್ರದೇಶ</div>
+                                                    </td>
+                                                    <td class="a520">
+                                                        <div class="r11">{{ item.VacantLandC }}sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a526">
+                                                        <div class="r11">11</div>
+                                                    </td>
+                                                    <td class="a527">
+                                                        <div class="r11">Plinth factor (Col 9/ Col 10)</div>
+                                                    </td>
+                                                    <td class="a528">
+                                                        <div class="r11">0</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a534">
+                                                        <div class="r11">12</div>
+                                                    </td>
+                                                    <td class="a535">
+                                                        <div class="r11">ಖಾಲಿ ಭೂಮಿಯ ವಿಸ್ತೀರ್ಣ (ನ8 - ನ9)</div>
+                                                    </td>
+                                                    <td class="a536">
+                                                        <div class="r11">{{ item.VacantLandA }}sq.ft. </div>
+                                                    </td>
+                                                </tr>
+                                                <tr style="HEIGHT:9.14mm">
+                                                    <td class="a542">
+                                                        <div class="r11">13</div>
+                                                    </td>
+                                                    <td class="a543">
+                                                        <div class="r11">ನಿವೇಶನದಲ್ಲಿ ಕಟ್ಟಿದ ಕಟ್ಟಡದ ಸುತ್ತಲಿನ ಗರಿಷ್ಟ 1000
+                                                            ಚದುರ
+                                                            ಅಡಿಗೂ ಮೀರಿ ಉಳಿಯುವ ಖಾಲಿ ಜಾಗ</div>
+                                                    </td>
+                                                    <td class="a544">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a550">
+                                                        <div class="r11">14</div>
+                                                    </td>
+                                                    <td class="a551">
+                                                        <div class="r11">ತೆರಿಗೆಗೆ ಒಳಪಡುವ ಒಟ್ಟು ಖಾಲಿ ಜಾಗ</div>
+                                                    </td>
+                                                    <td class="a552">
+                                                        <div class="r11">{{ item.VacantLandA }}sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a558">
+                                                        <div class="r11">15</div>
+                                                    </td>
+                                                    <td class="a559">
+                                                        <div class="r11">ಖಾಲಿ ಭೂಮಿ ವಿಸ್ತೀರ್ಣ</div>
+                                                    </td>
+                                                    <td class="a560">&nbsp;</td>
+                                                </tr>
+                                                <tr style="HEIGHT:7.11mm">
+                                                    <td class="a566">&nbsp;</td>
+                                                    <td class="a567">
+                                                        <div class="r11">ಅ) 1000 ಚ.ಮೀಟರ್ (10760 ಚದರಡಿ) ವರೆಗೆ ಅಧಿಕವಿರುವ
+                                                            ಖಾಲಿ
+                                                            ಭೂಮಿ</div>
+                                                    </td>
+                                                    <td class="a568">
+                                                        <div class="r11">{{ item.VacantLandA }}sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr style="HEIGHT:6.10mm">
+                                                    <td class="a574">&nbsp;</td>
+                                                    <td class="a575">
+                                                        <div class="r11">ಆ) 1000 ರಿಂದ 4000 ಚ.ಮೀಟರ್ ವರೆಗೆ (10760 ರಿಂದ
+                                                            43040)
+                                                            ಇರುವ ಖಾಲಿ ಭೂಮಿ</div>
+                                                    </td>
+                                                    <td class="a576">
+                                                        <div class="r11">{{ item.VacantLandB }}sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a582">&nbsp;</td>
+                                                    <td class="a583">
+                                                        <div class="r11">ಇ) 4000 ಚ.ಮೀಟರ್ (43040 ಚದರಡಿ) ಗಿಂತ ಅಧಿಕ</div>
+                                                    </td>
+                                                    <td class="a584">
+                                                        <div class="r11">{{ item.VacantLandC }}sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a590">
+                                                        <div class="r11">16</div>
+                                                    </td>
+                                                    <td class="a591">
+                                                        <div class="r11">ಅ) ಭೂಮಿಯ ಅಂದಾಜು ಮಾರುಕಟ್ಟೆ ಬೆಲೆ ಪ್ರತಿ ಚದುರ ಅಡಿಗೆ
+                                                        </div>
+                                                    </td>
+                                                    <td class="a592">
+                                                        <div class="r11">2230/ 3122</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a598">
+                                                        <div class="r11">16</div>
+                                                    </td>
+                                                    <td class="a599">
+                                                        <div class="r11">ಆ) ಭೂಮಿಯ ಅಂದಾಜು ಮಾರುಕಟ್ಟೆ ಬೆಲೆಯ 50% (16ಅ ರ 50%
+                                                            )2020-21 ರವರೆಗೆ ,(16ಅ ರ 25% ) 2021-22 ರಿಂದ 25%</div>
+                                                    </td>
+                                                    <td class="a600">
+                                                        <div class="r11">557.5/ 780.5</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a606">
+                                                        <div class="r11">17</div>
+                                                    </td>
+                                                    <td class="a607">
+                                                        <div class="r11">ಖಾಲಿ ಭೂಮಿಯ ತೆರಿಗೆಗೆ ಗುರಿಯಾಗುವ ಮೂಲ ಮೌಲ್ಯ</div>
+                                                    </td>
+                                                    <td class="a608">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a614">&nbsp;</td>
+                                                    <td class="a615">
+                                                        <div class="r11">ಅ) 1000 ಚ.ಮೀಟರ್ (10760 ಚದರಡಿ) ವರೆಗೆ (ನಂ-13(ಅ) X
+                                                            ನಂ16 (ಆ))</div>
+                                                    </td>
+                                                    <td class="a616">
+                                                        <div class="r11">{{ item.TaxableOpenLandA }}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr style="HEIGHT:6.10mm">
+                                                    <td class="a622">&nbsp;</td>
+                                                    <td class="a623">
+                                                        <div class="r11">ಆ) 1000 ರಿಂದ 4000 ಚ.ಮೀಟರ್ ವರೆಗೆ (10760 ರಿಂದ
+                                                            43040)
+                                                            (ನಂ-13(ಆ) X ನಂ16 (ಆ))</div>
+                                                    </td>
+                                                    <td class="a624">
+                                                        <div class="r11">0</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a630">&nbsp;</td>
+                                                    <td class="a631">
+                                                        <div class="r11">ಇ) 4000 ಚ.ಮೀಟರ್ (43040 ಚದರಡಿ) (ನಂ-13(ಇ) X ನಂ16
+                                                            (ಆ))
+                                                        </div>
+                                                    </td>
+                                                    <td class="a632">
+                                                        <div class="r11">0</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a638">
+                                                        <div class="r11">18</div>
+                                                    </td>
+                                                    <td class="a639">
+                                                        <div class="r11">ಖಾಲಿ ಭೂಮಿಯ ತೆರಿಗೆ ದರ</div>
+                                                    </td>
+                                                    <td class="a640">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a646">&nbsp;</td>
+                                                    <td class="a647">
+                                                        <div class="r11">ಅ) 1000 ಚ.ಮೀಟರ್ (10760 ಚದರಡಿ) ವರೆಗೆ</div>
+                                                    </td>
+                                                    <td class="a648">
+                                                        <div class="r11">0.212 %</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a654">&nbsp;</td>
+                                                    <td class="a655">
+                                                        <div class="r11">ಆ) 1000 ರಿಂದ 4000 ಚ.ಮೀಟರ್ ವರೆಗೆ (10760 ರಿಂದ
+                                                            43040)
+                                                        </div>
+                                                    </td>
+                                                    <td class="a656">
+                                                        <div class="r11">0.212 %</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a662">&nbsp;</td>
+                                                    <td class="a663">
+                                                        <div class="r11">ಇ) 4000 ಚ.ಮೀಟರ್ (43040 ಚದರಡಿ) ಗಿಂತ ಅಧಿಕ</div>
+                                                    </td>
+                                                    <td class="a664">
+                                                        <div class="r11">0.212 %</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a670">&nbsp;</td>
+                                                    <td class="a671">
+                                                        <div class="r11">ಆಸ್ತಿ ತೆರಿಗೆ</div>
+                                                    </td>
+                                                    <td class="a672">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a678">
+                                                        <div class="r11">19</div>
+                                                    </td>
+                                                    <td class="a679">
+                                                        <div class="r11">ಖಾಲಿ ಭೂಮಿಯ ಮೇಲಿನ ಆಸ್ತಿ
+                                                            ತೆರಿಗೆ<br>(ನ.15(ಆ)Xನ.16(ಅ) +
+                                                            ನ.15(ಆ)Xನ.16(ಆ) + ನ.15(ಇ)Xನ.16(ಇ))</div>
+                                                    </td>
+                                                    <td class="a680">
+                                                        <div class="r11">{{ item.OpenLandTaxAmount }} INR</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a686">
+                                                        <div class="r11">20</div>
+                                                    </td>
+                                                    <td class="a687">
+                                                        <div class="r11">ಕಟ್ಟಡ ಆವರಿಸಿದ ಭೂಮಿಯ ವಿಸ್ತೀರ್ಣ</div>
+                                                    </td>
+                                                    <td class="a688">
+                                                        <div class="r11">{{ item.AreaOccByBuilding }} sq.ft.</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="a694">
+                                                        <div class="r11">21</div>
+                                                    </td>
+                                                    <td class="a695">
+                                                        <div class="r11">ಭೂಮಿಯ ಮೂಲ ಮೌಲ್ಯ (ನಂ-16 ಆ X ನಂ-20)</div>
+                                                    </td>
+                                                    <td class="a696">
+                                                        <div class="r11">{{ item.OpenLandMktVal }}</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-bordered m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="alignleft"><b>Total payable Tax Rupees:</b></td>
+                                                    <td class="alignleft"><b>{{ item.PayableTax }}
+                                                        </b>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="block4">
+                                    <div align="left" style="padding-left: 1.5rem;">
+                                        <h5><b>Note</b></h5>
+                                        <p>1.Payment should be made on or before 30-3-2024</p>
+                                        <p>2.Payment of Property Tax and other levies shall be accepted only on
+                                            submission of proof of payment for the previous years</p>
+
+                                        <p>3.This is system generated demand note &amp; hence do not required any
+                                            signature.</p>
+                                    </div>
+                                    <div align="right" style="padding-right: 1rem; padding-top: 3rem;">
+                                        <h5><b>S/d</b></h5>
+                                        <h5><b></b></h5>
+                                        <h5><b>ತುಮಕೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ,ತುಮಕೂರು<br> By Order</b></h5>
+                                    </div>
+                                </div><!---->
+                            </div>
+                        </div>
+                        <div *ngIf="WaterDemand">
+                            <div id="contentone" class="bill mt-5 ng-star-inserted" *ngFor="let item of assessmentData"
+                                style="background-color: #FFFFFF; border: solid 2px #000000;padding: 20px">
+
+                                <div>
+                                    <div class="float-left"><img src="assets/logo/Muda-Logo.png" alt=""
+                                            style="height: 100px; width: 100px;">
+                                    </div>
+                                    <div class="p-1 text-center">
+                                        <h3><b>ತುಮಕೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ,ತುಮಕೂರು</b></h3>
+                                        <h5> {{'waterdemanddetails' | translate}}</h5>
+
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="block1 p-2">
+                                    <div class="text-center">
+                                        <h5><b>Demand Note - Assessment Year:{{ item.BillPeriod }}</b>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6 text-center"></div>
+                                        <div class="col-md-6 text-center">Date:<b>{{ currentDateTime }}</b></div>
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 text-left">Owner Name English:<b>{{ item.OwnerNameEnglish
+                                                }}</b> </div>
+                                        <div class="col-md-6 text-left">Owner Name Kan: <b>{{ item.OwnerNameKan }}</b>
+                                        </div>
+                                        <div class="col-md-6 text-left">SequenceNo:<b>{{ item.SequenceNo }}</b></div>
+                                        <div class="col-md-6 text-left">AddressEnglish:<b>{{ item.AddressEnglish }}</b>
+                                        </div>
+                                        <div class="col-md-6 text-left">OccupierNameEnglish:<b>{{ item.AddressEnglish
+                                                }}</b></div>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <h5><b> {{'chargesdetails' | translate}}</b>
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <table class="table table-bordered">
+                                        <tbody>
+
+                                            <tr>
+
+                                                <th scope="col">{{'BillPeriod' | translate}}</th>
+                                                <th scope="col">{{'Arrears' | translate}}</th>
+                                                <th scope="col">{{'Interest' | translate}}</th>
+                                                <th scope="col">{{'Penality' | translate}}</th>
+                                                <th scope="col">{{'CurrentDemand' | translate}}</th>
+
+                                            </tr>
+                                            <tr>
+                                                <td>{{ item.BillPeriod }}</td>
+                                                <td>{{ item.Arrears }}</td>
+                                                <td>{{ item.Interest }}</td>
+                                                <td>{{ item.Penality }}</td>
+                                                <td>{{ item.CurrentDemand }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="formgroup text-left">
+                                    <label>Amount In words</label>
+                                    <div class="form-control"><b>{{ Amountintext }}</b></div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br><br>
+                                <br>
+                                <br>
+                                <br>
+                             
+
+                                <br>
+                            </div>
+                        </div>
+                        <div *ngIf="UGDDemand">
+                            <div id="contentone" class="bill mt-5 ng-star-inserted" *ngFor="let item of assessmentData"
+                                style="background-color: #FFFFFF; border: solid 2px #000000;padding: 20px">
+
+                                <div>
+                                    <div class="float-left"><img src="assets/logo/Muda-Logo.png" alt=""
+                                            style="height: 100px; width: 100px;">
+                                    </div>
+                                    <div class="p-1 text-center">
+                                        <h3><b>ತುಮಕೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ,ತುಮಕೂರು</b></h3>
+                                        <h5> {{'ugddemanddetails' | translate}}</h5>
+
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="block1 p-2">
+                                    <div class="text-center">
+                                        <h5><b>Demand Note - Assessment Year:{{ item.BillPeriod }}</b>
+                                        </h5>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6 text-center"></div>
+                                        <div class="col-md-6 text-center">Date:<b>{{ currentDateTime }}</b></div>
+                                    </div>
+                                </div>
+                                <hr class="m-0">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 text-left">Owner Name English:<b>{{ item.OwnerNameEnglish
+                                                }}</b> </div>
+                                        <div class="col-md-6 text-left">Owner Name Kan: <b>{{ item.OwnerNameKan }}</b>
+                                        </div>
+                                        <div class="col-md-6 text-left">SequenceNo:<b>{{ item.SequenceNo }}</b></div>
+                                        <div class="col-md-6 text-left">Address:<b>{{ item.AddressEnglish }}</b>
+                                        </div>
+                                        <div class="col-md-6 text-left">OccupierNameEnglish:<b>{{ item.AddressEnglish
+                                                }}</b></div>
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <h5><b> {{'chargesdetails' | translate}}</b>
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <table class="table table-bordered">
+                                        <tbody>
+
+                                            <tr>
+
+                                                <th scope="col">{{'BillPeriod' | translate}}</th>
+                                                <th scope="col">{{'Arrears' | translate}}</th>
+                                                <th scope="col">{{'Interest' | translate}}</th>
+                                                <th scope="col">{{'Penality' | translate}}</th>
+                                                <th scope="col">{{'CurrentDemand' | translate}}</th>
+
+                                            </tr>
+                                            <tr>
+                                                <td>{{ item.BillPeriod }}</td>
+                                                <td>{{ item.Arrears }}</td>
+                                                <td>{{ item.Interest }}</td>
+                                                <td>{{ item.Penality }}</td>
+                                                <td>{{ item.CurrentDemand }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="formgroup text-left">
+                                    <label>Amount In words</label>
+                                    <div class="form-control"><b>{{ Amountintext }}</b></div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br><br>
+                                <br>
+                                <br>
+                                <br>
+                             
+
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div><!---->
+            </section>
+        </section>
+    </div>
+</div>

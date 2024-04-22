@@ -1,0 +1,15 @@
+<div class="mar-t15 mar-b15">
+    <!-- and this is captch -->
+    <div class="captcha-wrapper" style="width:100%">
+        <div class="captcha-image">
+            <img [src]="captchaImageUrl" alt="Identify the Captcha Image">
+           
+            <button type="button" (click)="refreshCaptcha()" title="Refresh the question" >Refresh</button>
+        </div>
+       
+            
+       
+    </div>
+    <span class="field-validation-error" *ngIf="isCaptchaInvalid">Please enter a valid answer</span>
+  </div>
+  

@@ -1,0 +1,5 @@
+.disabled-link {
+    pointer-events: none;  /* Prevent the link from being clickable */
+    color: rgba(128, 128, 128, 0.692);           /* Change the color to indicate it's disabled */
+    /* Add any other styling to indicate the disabled state */
+  }

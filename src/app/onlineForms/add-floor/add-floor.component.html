@@ -1,0 +1,245 @@
+<div *ngIf="newPropertyaddfloor ||sasadd " class="modal-overlay container" (click)="closeModal()">
+    <div style="overflow: auto;max-height: 100%;">
+        <div class="modal-container" (click)="$event.stopPropagation()">
+            <h2>Add Floor</h2>
+            <form *ngIf="sasadd" (ngSubmit)="onSubmit()" [formGroup]="floorForm">
+                <p>Present Floor Type: Ground</p>
+                <div class="row clearfix">
+
+                    <div class="form-group col-md-4">
+                        <label>{{ 'PropertyType' | translate }}</label>
+                        <select id="propertytypeAUID" class="form-control" formControlName="Property_Type">
+                            <option value="">Select Property</option>
+                            <option value="ASSESSED">ASSESSED</option>
+                            <option value="UNASSESSED">UNASSESSED</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>{{ 'floorLevel' | translate }}</label>
+                        <select class="form-control" id="drpfloorLevel" formControlName="FloorLevel_Id" name="floorLevel"
+                            (change)="onFloorLevelSelect($event)">
+                            <option *ngFor="let level of FloorLevelList" [value]="level?.Floor_Name">{{
+                                level?.Floor_Name }}</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group col-md-4">
+                        <label for="SlabtypeID">{{ 'Slabtype' | translate }}</label>
+                        <select id="SlabtypeID" class="form-control" formControlName="SlabType_Id"
+                            (change)="onSlabSelect($event)">
+                            <option *ngFor="let slab of SlabtypeList" [value]="slab?.SlabId">{{ slab?.SlabName }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="FloorClass_Id">Select Floor Class:</label>
+                        <select id="FloorClass_Id" class="form-control" formControlName="FloorClass_Id">
+                            <option value="" selected>Select</option>
+                            <option *ngFor="let classes of PropertyClasses" [value]="classes">{{ classes }}</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="FloorUsageID">Select a Floor usage:</label>
+                        <select id="FloorUsageID" class="form-control" formControlName="FloorUsage_Name">
+                            <option *ngFor="let usage of PropertyUsageList" [value]="usage?.usagename">{{ usage?.usagename
+                                }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="FloorrentID">Select a Floor Own/Rent:</label>
+                        <select id="FloorrentID" class="form-control" formControlName="Tax_Rebate">
+                            <option value="">Select</option>
+                            <option value="Self">Self</option>
+                            <option value="Non-Self">Non-Self</option>
+                            <option value="Commercial self or non self">Commercial self or non self</option>
+                            <option value="Industrial self or non-self">Industrial self or non-self</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="textbox1">Building Cons Year</label>
+                        <input id="textbox1" class="form-control" formControlName="Building_Const_Year"
+                            (input)="onBuildingConsYearChange()" type="number">
+                        <div
+                            *ngIf="floorForm.get('Building_Const_Year')?.hasError('required') && floorForm.get('Building_Const_Year')?.touched">
+                            <small class="text-danger">Building Cons Year is required.</small>
+                        </div>
+                        <div
+                            *ngIf="floorForm.get('Building_Const_Year')?.hasError('min') && floorForm.get('Building_Const_Year')?.touched">
+                            <small class="text-danger">Building Cons Year must be greater than or equal to 1900.</small>
+                        </div>
+                        <div
+                            *ngIf="floorForm.get('Building_Const_Year')?.hasError('max') && floorForm.get('Building_Const_Year')?.touched">
+                            <small class="text-danger">Building Cons Year must be less than or equal to the current
+                                year.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="textbox2">Building Age</label>
+                        <input id="textbox2" class="form-control" formControlName="BuildingAge" readonly>
+                    </div>
+
+                   
+                    <div class="form-group col-lg-4">
+                        <label>{{'SelectTaxtobefixedYear' | translate}}</label>
+
+                        <select class="form-control" id="drpFinYear" formControlName="Assyear" name="FinYear" >
+                            <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="floorareaasperFieldsrvy">Actutal Plinth Area(Sq. Ft.)</label>
+                        <input id="floorareaasperFieldsrvy" class="form-control" formControlName="Actual_PlinthArea"
+                            type="number" (input)="calculateOpenLand()">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="AreaOccupiedbyBuilding">Plinth Area Assessed (Sq. Ft.)</label>
+                        <input id="AreaOccupiedbyBuilding" class="form-control" formControlName="PlinthArea_Assessed"
+                            type="number" (input)="calculateOpenLand()">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="OpenLand">Plinth Area Unassessed (Sq. Ft.)</label>
+                        <input id="OpenLand" class="form-control" formControlName="PlinthArea_UnAssessed" type="number">
+                    </div>
+                   
+                   
+                </div>
+                <div class="main-section-padding">
+                    <div class="action-contents transactions">
+                        <div class="row clearfix">
+                            <div class="col-lg-6">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled action-btns">
+                                    <li>
+                                        <button class="button-control inverse" id="btnClear" type="reset"
+                                            (click)="closeModal()"><span
+                                                class="fa fa-refresh pad-r5"></span>Close</button>
+
+                                    </li>
+                                    <li>
+                                        <button class="button-control" id="btnComplaint" type="submit"><span
+                                                class="fa fa-check-circle pad-r5"></span>Add Floor</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <form *ngIf="newPropertyaddfloor" (ngSubmit)="onSubmitproeprty()" [formGroup]="Propertyfloor">
+                <div class="row clearfix">
+                    <div class="form-group col-md-4">
+                        <label for="propertytypeAUID">Select a Floor Type:</label>
+                        <select id="propertytypeAUID" class="form-control" formControlName="FloorType_Id">
+                            <option value="">Select floor type</option>
+                            <option value="ASSESSED">ASSESSED</option>
+                            <option value="UNASSESSED">UNASSESSED</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="FloorLevel">Select a Floor:</label>
+                        <select id="FloorLevel" class="form-control" formControlName="FloorLevel_Id"
+                            (change)="onFloorLevelChange($event)">
+                            <option value="">Select Floor Level</option>
+                            <option value="Cellular">Cellular</option>
+                            <option value="Ground">Ground</option>
+                            <option value="First">First</option>
+                            <option value="Second">Second</option>
+                            <option value="Third">Third</option>
+                            <option value="Fourth">Fourth</option>
+                            <option value="Fifth">Fifth</option>
+                            <option value="Sixth">Sixth</option>
+                            <option value="Seventh">Seventh</option>
+                            <option value="Eighth">Eighth</option>
+                            <option value="Ninth">Ninth</option>
+                            <option value="Tenth">Tenth</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <label for="FloorUsageID">Select a Floor usage:</label>
+                        <select id="FloorUsageID" class="form-control" formControlName="FloorUsage_Id">
+                            <option value="">Select Option</option>
+                            <option *ngFor="let year of Propertyusage" [value]="year">{{ year }}</option>
+
+                            <!-- Add other options as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="slabid">Select Floor Class:</label>
+                        <select id="slabid" class="form-control" formControlName="FloorClass_Id">
+                            <option value="" selected>Select</option>
+                            <option *ngFor="let classes of PropertyClasses" [value]="classes">{{ classes }}</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="SlabtypeID">Slab Type :</label>
+                        <select id="SlabtypeID" class="form-control" formControlName="SlabType_Id">
+                            <option value="">Select Option</option>
+                            <option *ngFor="let slab of slabtype" [value]="slab">{{ slab }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="PlinthAreaA">Assessed Floor area in Sq.ft.</label>
+                        <input id="PlinthAreaA" class="form-control" formControlName="PlinthArea_Assessed" type="text">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="PlinthAreaU">Unassessed Floor area in Sq.ft.</label>
+                        <input id="PlinthAreaU" class="form-control" formControlName="PlinthArea_UnAssessed"
+                            type="text">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="bildingage">Building Age</label>
+                        <input id="bildingage" class="form-control" formControlName="BuildingAge" type="text">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="FloorrentID">Select Tax Rebate:</label>
+                        <select id="FloorrentID" class="form-control" formControlName="Tax_Rebate">
+                            <option value="Self">Self</option>
+                            <option value="Non-Self">Non-Self</option>
+                            <option value="Commercial self or non self">Commercial self or non self</option>
+                            <option value="Industrial self or non-self">Industrial self or non-self</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="main-section-padding">
+                    <div class="action-contents transactions">
+                        <div class="row clearfix">
+                            <div class="col-lg-6">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled action-btns">
+                                    <li>
+                                        <button class="button-control inverse" id="btnClear" type="reset"
+                                            (click)="closeModal()"><span class="fa fa-refresh pad-r5"></span>Clear
+                                            Form</button>
+
+                                    </li>
+                                    <li>
+                                        <button class="button-control" id="btnComplaint" type="submit"><span
+                                                class="fa fa-check-circle pad-r5"></span>Add Floor</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
