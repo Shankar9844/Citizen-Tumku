@@ -48,6 +48,7 @@
                       <span class="fa fa-check-circle pad-r5"></span>{{ 'login.getOtp' | translate }}
                     </button>
                   </form>
+                  <!--otp showing-->
                   <form [formGroup]="OTPform" (ngSubmit)="OnotpSubmit()" *ngIf="otpshow && !personaldetailsforms">
                     <label>this is your OTP {{otp}}</label>
                     <div class="form-group text-center">
