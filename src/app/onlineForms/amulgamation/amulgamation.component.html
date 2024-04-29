@@ -12,6 +12,7 @@
                                         <label>{{ 'PID' | translate }}</label>
                                         <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
                                             title="PID" type="text" value="">
+                                        <small *ngIf="propertysearch.get('PID').inavalid && propertysearch.get('PID').touched">PID is Required</small>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="drpFinYear">{{'billyear' | translate}}</label>
@@ -20,6 +21,7 @@
                                             <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}
                                             </option>
                                         </select>
+                                        <small *ngIf="propertysearch.get('PID').inavalid && propertysearch.get('PID').touched">PID is Required</small>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <br>
