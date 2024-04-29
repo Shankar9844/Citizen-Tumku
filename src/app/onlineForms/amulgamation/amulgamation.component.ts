@@ -22,10 +22,25 @@ export class AmulgamationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private podiservice:ApiService) { }
 
   getassessmentyearlist() {
-    this.podiservice.GetTaxYearlist().subscribe((res: any[]) => {
-      this.AssessmentYearlst = res.map((item) => item.year).reverse();
-    });
+    this.podiservice.LoadYears().subscribe(
+      (res: any[]) => {
+        // Log the response to see its structure
+        console.log('Response from GetTaxYearlist:', res);
+        
+        // Assuming the response is an array of objects with a 'Year' property
+        this.AssessmentYearlst = res.map(item => item.Year).reverse();
+        
+        // Log the mapped array to verify its contents
+        console.log('Mapped years:', this.AssessmentYearlst);
+      },
+      error => {
+        // Log any errors
+        console.error('Error fetching assessment year list:', error);
+      }
+    );
   }
+  
+  
   pidsearch() {
     this.propertysearch = this.formBuilder.group({
       PID: ['', [Validators.required]],

@@ -12,14 +12,15 @@
                                         <label>{{ 'PID' | translate }}</label>
                                         <input autocomplete="off" class="form-control" name="PID" formControlName="PID"
                                             title="PID" type="text" value="">
+                                            <small *ngIf="propertysearch.get('PID').invalid && propertysearch.get('PID').touched">
+                                                <h4 class="text-danger">PID is Required</h4></small>
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="drpFinYear">{{'billyear' | translate}}</label>
-                                        <select class="form-control" id="drpFinYear" formControlName="Assyear"
-                                            name="FinYear">
-                                            <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}
-                                            </option>
-                                        </select>
+                                        <select class="form-control" id="drpFinYear" formControlName="Assyear" name="FinYear">
+                                            <option *ngFor="let year of AssessmentYearlst" [value]="year">{{ year }}</option>
+                                          </select>
+                                          
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <br>
@@ -47,76 +48,6 @@
                                         <div id="collapse326" [ngClass]="{'in': attachdata}"
                                             class="panel-collapse collapse in" role="tabpanel"
                                             aria-labelledby="heading326" aria-expanded="true">
-                                            <div class="panel-body">
-                                                <div class="row clearfix">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label
-                                                                for="">{{'AmulgamationForm.CHOOSE_NOOF_PID_AMULGUMATION'|translate}}</label>
-                                                            <div class="horizontal-radio-group">
-                                                                <div>
-                                                                    <input type="radio" name="GovtDevelopmentAuthID1"
-                                                                        id="GovtDevelopmentAuthID1"
-                                                                        formControlName="GovtDevelopmentAuthID1"
-                                                                        value="2PIDs">
-                                                                    <label for="GovtDevelopmentAuthID1">2PIDs</label>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="radio" name="GovtDevelopmentAuthID1"
-                                                                        id="GovtDevelopmentAuthID2"
-                                                                        formControlName="GovtDevelopmentAuthID1"
-                                                                        value="3PIDs">
-                                                                    <label for="GovtDevelopmentAuthID2">3PIDs</label>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="radio" name="GovtDevelopmentAuthID1"
-                                                                        id="GovtDevelopmentAuthID3"
-                                                                        formControlName="GovtDevelopmentAuthID1"
-                                                                        value="4PIDs">
-                                                                    <label for="GovtDevelopmentAuthID3">4PIDs</label>
-                                                                </div>
-                                                                <div>
-                                                                    <input type="radio" name="GovtDevelopmentAuthID1"
-                                                                        id="GovtDevelopmentAuthID4"
-                                                                        formControlName="GovtDevelopmentAuthID1"
-                                                                        value="5PIDs">
-                                                                    <label for="GovtDevelopmentAuthID4">5PIDs</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label
-                                                                for="">{{'AmulgamationForm.ENTER_PID'|translate}}</label>
-                                                            <input type="number" name="PID" id="" formControlName="PID"
-                                                                class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3" style="margin-top: 22px;">
-                                                        <button type="submit" class="btn btn-success">Search</button>
-                                                    </div>
-                                                </div>
-                                                <button role="button" [disabled]="!checkFormValidity()"
-                                                    class="btn btn-primary" data-toggle="collapse"
-                                                    data-parent="#accordion" href="#collapse336" aria-expanded="false"
-                                                    aria-controls="collapse336">Next</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="panel panel-default ">
-                                        <div class="panel-heading" role="tab" id="heading336">
-                                            <div class="panel-title">
-                                                <a [ngClass]="{'disabled-link': !checkFormValidity()}" class="collapsed"
-                                                    role="button" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapse336" aria-expanded="false"
-                                                    aria-controls="collapse336">
-                                                    ಮಾಲೀಕರು / ವರ್ಗಾಯಿಸಿದವರ / ಮಾರಾಟ ಮಾಡುವವರ</a>
-                                            </div>
-                                        </div>
-                                        <div id="collapse336" class="panel-collapse collapse" role="tabpanel"
-                                            aria-labelledby="heading336" aria-expanded="false">
                                             <div class="panel-body">
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -167,6 +98,22 @@
                                                         aria-expanded="false" aria-controls="collapse337">Next</button>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading" role="tab" id="heading336">
+                                            <div class="panel-title">
+                                                <a [ngClass]="{'disabled-link': !checkFormValidity()}" class="collapsed"
+                                                    role="button" data-toggle="collapse" data-parent="#accordion"
+                                                    href="#collapse336" aria-expanded="false"
+                                                    aria-controls="collapse336">
+                                                    ಮಾಲೀಕರು / ವರ್ಗಾಯಿಸಿದವರ / ಮಾರಾಟ ಮಾಡುವವರ</a>
+                                            </div>
+                                        </div>
+                                        <div id="collapse336" class="panel-collapse collapse" role="tabpanel"
+                                            aria-labelledby="heading336" aria-expanded="false">
+                                            
                                         </div>
                                     </div>
                                     <div class="panel panel-default ">
